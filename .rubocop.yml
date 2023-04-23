@@ -1,0 +1,20 @@
+require: rubocop-rails
+AllCops:
+  NewCops: enable
+  Exclude:
+    - bin/*
+    - db/schema.rb
+    - log/**/*
+    - node_modules/**/*
+    - tmp/**/*
+    - vendor/bundle/**/*
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - Gemfile
+Metrics/BlockLength:
+  Exclude:
+    - Guardfile
+    - spec/**/*
+Style/Documentation:
+  Enabled: false
