@@ -6,12 +6,17 @@ services:
       context: .
       args:
         APP_DIR: /myapp
+    command: bash -c "rm -f tmp/pids/server.pid && bin/dev"
     depends_on:
       - db
     environment:
       - DB_HOST=db
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
+    ports:
+      - 3000:3000
+    stdin_open: true
+    tty: true
     volumes:
       - ./:/myapp
 
