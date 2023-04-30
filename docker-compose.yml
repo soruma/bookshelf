@@ -13,12 +13,14 @@ services:
       - DB_HOST=db
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
+      - BUNDLE_PATH=/bundle
     ports:
       - 3000:3000
     stdin_open: true
     tty: true
     volumes:
       - ./:/myapp
+      - ruby-bundle:/bundle
 
   db:
     image: postgres:15
@@ -30,3 +32,4 @@ services:
 
 volumes:
   db-volume:
+  ruby-bundle:
