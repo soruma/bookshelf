@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Book, type: :model do
+RSpec.describe Book do
   describe '#required_either_isbn_or_asin' do
     shared_context 'when isbn is nil' do
       let(:isbn) { nil }
