@@ -80,6 +80,7 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'guard-rubocop', require: false
   gem 'rspec-rails'
+  gem 'rubocop-capybara'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'simplecov', require: false

@@ -335,6 +335,7 @@ DEPENDENCIES
   rails (~> 7.0.4, >= 7.0.4.3)
   rails-i18n (~> 7.0.0)
   rspec-rails
+  rubocop-capybara
   rubocop-rails
   rubocop-rspec
   selenium-webdriver
