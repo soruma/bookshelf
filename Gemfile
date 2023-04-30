@@ -88,3 +88,7 @@ end
 
 gem 'rails-i18n', '~> 7.0.0'
 gem 'slim-rails'
+
+# Auth
+gem 'excon'
+gem 'json-jwt'

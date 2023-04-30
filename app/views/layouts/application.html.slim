@@ -9,6 +9,17 @@ html
     = stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload"
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
+
   body
+    header
+      h1
+        a.logo[href="#"] Bookshelf
+
+      - if (!@is_signed_in)
+        a.button[href=signin_path] Sign In
+        a.button[href=signup_path] Sign Up
+      - else
+        a.button[href=signout_path] Sign Out
+
     main.container.mx-auto.mt-28.px-5.flex
       = yield
