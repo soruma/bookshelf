@@ -17,18 +17,18 @@ class SessionController < ApplicationController
   private
 
   def cognito_signin_url
-    CognitoUrls.login_uri(ENV.fetch('AWS_COGNITO_APP_CLIENT_ID', nil),
-                          signin_redirect_uri)
+    Cognito::Urls.login_uri(ENV.fetch('AWS_COGNITO_APP_CLIENT_ID', nil),
+                            signin_redirect_uri)
   end
 
   def cognito_signup_url
-    CognitoUrls.signup_uri(ENV.fetch('AWS_COGNITO_APP_CLIENT_ID', nil),
-                           signin_redirect_uri)
+    Cognito::Urls.signup_uri(ENV.fetch('AWS_COGNITO_APP_CLIENT_ID', nil),
+                             signin_redirect_uri)
   end
 
   def cognito_signout_url
-    CognitoUrls.logout_uri(ENV.fetch('AWS_COGNITO_APP_CLIENT_ID', nil),
-                           signout_redirect_uri)
+    Cognito::Urls.logout_uri(ENV.fetch('AWS_COGNITO_APP_CLIENT_ID', nil),
+                             signout_redirect_uri)
   end
 
   def signin_redirect_uri

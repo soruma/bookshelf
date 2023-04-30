@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'cognito_jwt_keys'
-require 'cognito_client'
+require 'cognito/jwt_keys'
+require 'cognito/client'
 
 # From: https://github.com/mheffner/rails-cognito-example
 class ApplicationController < ActionController::Base
@@ -61,6 +61,6 @@ class ApplicationController < ActionController::Base
   end
 
   def new_cognito_client
-    CognitoClient.new(redirect_uri: auth_signin_url)
+    Cognito::Client.new(redirect_uri: auth_signin_url)
   end
 end
