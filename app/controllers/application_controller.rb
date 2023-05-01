@@ -5,11 +5,14 @@ require 'cognito/client'
 
 # From: https://github.com/mheffner/rails-cognito-example
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
+
   before_action :check_signed_in
+
+  attr_reader :current_user
 
   def check_signed_in
     @is_signed_in = false
-    @current_user = nil
     @cognito_session = nil
 
     cognito_session = nil
