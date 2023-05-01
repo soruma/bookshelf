@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 
   get 'auth/signin'
   get 'auth/signout'
+
+  resources :users, param: :name, only: [:show], path: '/'
 end
