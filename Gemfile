@@ -66,6 +66,10 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  # Vulnerability scanner
+  gem 'brakeman'
+  gem 'bundler-audit'
 end
 
 group :test do
@@ -76,7 +80,6 @@ group :test do
 end
 
 group :development, :test do
-  gem 'bundler-audit'
   gem 'factory_bot_rails'
   gem 'guard-rspec', require: false
   gem 'guard-rubocop', require: false
