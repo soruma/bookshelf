@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @bookcase
+
+div
+  => link_to "Edit this bookcase", edit_bookcase_path(@bookcase)
+  '|
+  =< link_to "Back to bookcases", bookcases_path
+
+  = button_to "Destroy this bookcase", @bookcase, method: :delete

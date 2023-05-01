@@ -1,0 +1,10 @@
+h1 Editing bookcase
+
+== render "form", bookcase: @bookcase
+
+br
+
+div
+  => link_to "Show this bookcase", @bookcase
+  '|
+  =< link_to "Back to bookcases", bookcases_path
