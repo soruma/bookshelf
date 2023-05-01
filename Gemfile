@@ -70,6 +70,9 @@ group :development do
   # Vulnerability scanner
   gem 'brakeman'
   gem 'bundler-audit'
+
+  # ED Diagram
+  gem 'rails-erd'
 end
 
 group :test do
