@@ -15,9 +15,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_035212) do
   enable_extension "plpgsql"
 
   create_table "authors", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_authors_on_name"
   end
 
   create_table "book_authors", force: :cascade do |t|
@@ -47,13 +48,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_035212) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.string "description"
-    t.integer "page"
+    t.integer "page", null: false
     t.string "isbn"
     t.string "asin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_books_on_title"
   end
 
   create_table "cognito_sessions", force: :cascade do |t|
