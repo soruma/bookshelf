@@ -2,3 +2,8 @@ en:
   models:
     book:
       required_either_isbn_or_asin: "Please enter either ISBN or ASIN"
+
+  bookcases:
+    created_success: "Bookcase was successfully created"
+    updated_success: "Bookcase was successfully updated"
+    destroyed_success: "Bookcase was successfully destroyed"

@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :bookcase do
-    name { 'MyString' }
-    user { nil }
+    name { 'Social science' }
+    user
   end
 end
