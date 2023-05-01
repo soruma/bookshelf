@@ -76,6 +76,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'bundler-audit'
   gem 'factory_bot_rails'
   gem 'guard-rspec', require: false
   gem 'guard-rubocop', require: false
