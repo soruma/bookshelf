@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :user do
     subscriber { 'MyString' }
-    email { 'MyString' }
+    email { 'test_user@example.com' }
+    name { 'test_user' }
   end
 end
