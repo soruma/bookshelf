@@ -18,7 +18,8 @@ class AuthController < ApplicationController
       user = User.where(subscriber: resp.id_token[:sub]).first
       if user.nil?
         user = User.create(subscriber: resp.id_token[:sub],
-                           email: resp.id_token[:email])
+                           email: resp.id_token[:email],
+                           name: resp.id_token['cognito:username'])
       end
 
       cognito_session = CognitoSession.create(user:,
