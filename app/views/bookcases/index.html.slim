@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Bookcases
+
+#bookcases
+  - @bookcases.each do |bookcase|
+    == render bookcase
+    p
+      = link_to "Show this bookcase", bookcase
+
+= link_to "New bookcase", new_bookcase_path
