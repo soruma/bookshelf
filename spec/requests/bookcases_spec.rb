@@ -2,42 +2,52 @@
 
 require 'rails_helper'
 
-RSpec.describe '/bookcases' do
+RSpec.describe '/:user_name/bookcases' do
+  let(:target_user) do
+    create(:user)
+  end
+
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      name: 'valid user',
+      user_id: target_user.id
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      name: nil,
+      user_id: target_user.id
+    }
   end
 
   describe 'GET /index' do
     it 'renders a successful response' do
-      Bookcase.create! valid_attributes
-      get bookcases_url
+      Bookcase.create!(valid_attributes)
+      get user_bookcases_url(target_user.name)
       expect(response).to be_successful
     end
   end
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      bookcase = Bookcase.create! valid_attributes
-      get bookcase_url(bookcase)
+      bookcase = Bookcase.create!(valid_attributes)
+      get user_bookcase_url(target_user.name, bookcase)
       expect(response).to be_successful
     end
   end
 
   describe 'GET /new' do
     it 'renders a successful response' do
-      get new_bookcase_url
+      get new_user_bookcase_url(target_user.name)
       expect(response).to be_successful
     end
   end
 
   describe 'GET /edit' do
     it 'renders a successful response' do
-      bookcase = Bookcase.create! valid_attributes
-      get edit_bookcase_url(bookcase)
+      bookcase = Bookcase.create!(valid_attributes)
+      get edit_user_bookcase_url(target_user.name, bookcase)
       expect(response).to be_successful
     end
   end
@@ -46,25 +56,25 @@ RSpec.describe '/bookcases' do
     context 'with valid parameters' do
       it 'creates a new Bookcase' do
         expect do
-          post bookcases_url, params: { bookcase: valid_attributes }
+          post user_bookcases_url(target_user.name), params: { bookcase: valid_attributes }
         end.to change(Bookcase, :count).by(1)
       end
 
       it 'redirects to the created bookcase' do
-        post bookcases_url, params: { bookcase: valid_attributes }
-        expect(response).to redirect_to(bookcase_url(Bookcase.last))
+        post user_bookcases_url(target_user.name), params: { bookcase: valid_attributes }
+        expect(response).to redirect_to(user_bookcase_url(target_user.name, Bookcase.last))
       end
     end
 
     context 'with invalid parameters' do
       it 'does not create a new Bookcase' do
         expect do
-          post bookcases_url, params: { bookcase: invalid_attributes }
+          post user_bookcases_url(target_user.name), params: { bookcase: invalid_attributes }
         end.not_to change(Bookcase, :count)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post bookcases_url, params: { bookcase: invalid_attributes }
+        post user_bookcases_url(target_user.name), params: { bookcase: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -73,28 +83,31 @@ RSpec.describe '/bookcases' do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          name: 'update user',
+          user_id: target_user.id
+        }
       end
 
       it 'updates the requested bookcase' do
-        bookcase = Bookcase.create! valid_attributes
-        patch bookcase_url(bookcase), params: { bookcase: new_attributes }
+        bookcase = Bookcase.create!(valid_attributes)
+        patch user_bookcase_url(target_user.name, bookcase), params: { bookcase: new_attributes }
         bookcase.reload
-        skip('Add assertions for updated state')
+        expect(bookcase.name).to eq 'update user'
       end
 
       it 'redirects to the bookcase' do
-        bookcase = Bookcase.create! valid_attributes
-        patch bookcase_url(bookcase), params: { bookcase: new_attributes }
+        bookcase = Bookcase.create!(valid_attributes)
+        patch user_bookcase_url(target_user.name, bookcase), params: { bookcase: new_attributes }
         bookcase.reload
-        expect(response).to redirect_to(bookcase_url(bookcase))
+        expect(response).to redirect_to(user_bookcase_url(target_user.name, bookcase))
       end
     end
 
     context 'with invalid parameters' do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        bookcase = Bookcase.create! valid_attributes
-        patch bookcase_url(bookcase), params: { bookcase: invalid_attributes }
+        bookcase = Bookcase.create!(valid_attributes)
+        patch user_bookcase_url(target_user.name, bookcase), params: { bookcase: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -102,16 +115,16 @@ RSpec.describe '/bookcases' do
 
   describe 'DELETE /destroy' do
     it 'destroys the requested bookcase' do
-      bookcase = Bookcase.create! valid_attributes
+      bookcase = Bookcase.create!(valid_attributes)
       expect do
-        delete bookcase_url(bookcase)
+        delete user_bookcase_url(target_user.name, bookcase)
       end.to change(Bookcase, :count).by(-1)
     end
 
     it 'redirects to the bookcases list' do
-      bookcase = Bookcase.create! valid_attributes
-      delete bookcase_url(bookcase)
-      expect(response).to redirect_to(bookcases_url)
+      bookcase = Bookcase.create!(valid_attributes)
+      delete user_bookcase_url(target_user.name, bookcase)
+      expect(response).to redirect_to(user_bookcases_url(target_user.name))
     end
   end
 end
