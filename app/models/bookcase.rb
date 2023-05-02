@@ -6,4 +6,6 @@ class Bookcase < ApplicationRecord
   has_many :books, through: :book_in_bookcase
 
   validates :name, presence: true
+
+  scope :on_user_at, ->(user) { where(user:) }
 end
