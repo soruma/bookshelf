@@ -1,0 +1,15 @@
+= form_with(model: @bookcase, url: user_bookcases_path) do |form|
+  - if @bookcase.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@bookcase.errors.count, "error")} prohibited this bookcase from being saved:"
+      ul
+        - @bookcase.errors.each do |error|
+          li = error.full_message
+
+  div
+    = form.label :name, style: "display: block"
+    = form.text_field :name
+
+  div
+    = form.hidden_field :user_id, value: @user.id
+    = form.submit
