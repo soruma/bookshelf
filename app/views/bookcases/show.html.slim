@@ -3,8 +3,10 @@ p style="color: green" = notice
 == render @bookcase
 
 div
-  => link_to "Edit this bookcase", edit_user_bookcase_path(@bookcase.user.name, @bookcase)
-  '|
+  - if policy(@bookcase).edit?
+    => link_to "Edit this bookcase", edit_user_bookcase_path(@bookcase.user.name, @bookcase)
+    '|
   =< link_to "Back to bookcases", user_bookcases_path
 
-  = button_to "Destroy this bookcase", user_bookcase_path(@bookcase.user.name, @bookcase), method: :delete
+  - if policy(@bookcase).destroy?
+    = button_to "Destroy this bookcase", user_bookcase_path(@bookcase.user.name, @bookcase), method: :delete

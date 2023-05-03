@@ -8,4 +8,5 @@ h1 Bookcases
     p
       = link_to "Show this bookcase", user_bookcase_path(bookcase.user.name, bookcase)
 
-= link_to "New bookcase", new_user_bookcase_path
+- if policy(@new_bookcase).new?
+  = link_to "New bookcase", new_user_bookcase_path

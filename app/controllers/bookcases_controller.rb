@@ -6,18 +6,26 @@ class BookcasesController < ApplicationController
 
   def index
     @bookcases = Bookcase.on_user_at(@user)
+    @new_bookcase = Bookcase.new(user: @user)
+    authorize Bookcase
   end
 
-  def show; end
+  def show
+    authorize @bookcase
+  end
 
   def new
     @bookcase = Bookcase.new(user: @user)
+    authorize @bookcase
   end
 
-  def edit; end
+  def edit
+    authorize @bookcase
+  end
 
   def create
     @bookcase = Bookcase.new(bookcase_params)
+    authorize @bookcase
 
     respond_to do |format|
       if @bookcase.save
@@ -33,6 +41,7 @@ class BookcasesController < ApplicationController
   end
 
   def update
+    authorize @bookcase
     respond_to do |format|
       if @bookcase.update(bookcase_params)
         format.html do
@@ -47,6 +56,7 @@ class BookcasesController < ApplicationController
   end
 
   def destroy
+    authorize @bookcase
     @bookcase.destroy
 
     respond_to do |format|
