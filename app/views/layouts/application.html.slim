@@ -23,7 +23,7 @@ body.h-full
 
             .hidden.md:block
               .ml-10.flex.items-baseline.space-x-4
-                a.bg-gray-900.text-white.rounded-md.px-3.py-2.text-sm.font-medium[href="#" aria-current="page"]
+                a.bg-gray-900.text-white.rounded-md.px-3.py-2.text-sm.font-medium[href="#"]
                   | Dashboard
                 a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.px-3.py-2.text-sm.font-medium[href="#"]
                   | Team
@@ -39,14 +39,12 @@ body.h-full
               button.rounded-full.bg-gray-800.p-1.text-gray-400.hover:text-white.focus:outline-none.focus:ring-2.focus:ring-white.focus:ring-offset-2.focus:ring-offset-gray-800[type="button"]
                 span.sr-only
                   | View notifications
-                svg.h-6.w-6[fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"]
+                svg.h-6.w-6[fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor"]
                   path[stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"]
 
               .relative.ml-3
                 div
                   button#user-menu-button.flex.max-w-xs.items-center.rounded-full.bg-gray-800.text-sm.focus:outline-none.focus:ring-2.focus:ring-white.focus:ring-offset-2.focus:ring-offset-gray-800[
-                      aria-expanded="false"
-                      aria-haspopup="true"
                       data-action="dropdown-menu#toggleMenu"
                       type="button"
                     ]
@@ -59,15 +57,14 @@ body.h-full
           .-mr-2.flex.md:hidden
             / Mobile menu button
             button.inline-flex.items-center.justify-center.rounded-md.bg-gray-800.p-2.text-gray-400.hover:bg-gray-700.hover:text-white.focus:outline-none.focus:ring-2.focus:ring-white.focus:ring-offset-2.focus:ring-offset-gray-800[
-                aria-expanded="false"
                 data-action="dropdown-menu#toggleMenu"
                 type="button"
               ]
               span.sr-only
                 | Open main menu
-              svg.block.h-6.w-6[fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"]
+              svg.block.h-6.w-6[fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor"]
                 path[stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"]
-              svg.hidden.h-6.w-6[fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"]
+              svg.hidden.h-6.w-6[fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor"]
                 path[stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"]
 
         = render partial: "layouts/mobile_menu"
