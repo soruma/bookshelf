@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+- [Stacked Layouts - Tailwind UI](https://tailwindui.com/components/application-ui/application-shells/stacked#component-10058606cac5398d7fa2c73b64089874)
