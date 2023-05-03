@@ -1,0 +1,10 @@
+.bundle
+.env
+.git
+.gitattributes
+.github
+.gitignore
+vendor/bundle
+.DS_Store
+*.swp
+*~
