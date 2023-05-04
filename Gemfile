@@ -94,6 +94,9 @@ group :development, :test do
   gem 'simplecov', require: false
 end
 
+# https://github.com/amatsuda/active_decorator/pull/117
+gem 'active_decorator', github: 'amatsuda/active_decorator'
+
 gem 'rails-i18n', '~> 7.0.0'
 gem 'slim-rails'
 
