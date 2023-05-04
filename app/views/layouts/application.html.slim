@@ -14,12 +14,12 @@ body.h-full
   .min-h-full
     nav.bg-gray-800
       .mx-auto.max-w-7xl.px-4.sm:px-6.lg:px-8[
-          data-controller="dropdown-menu"
+          data-controller="mobile-menu"
         ]
         .flex.h-16.items-center.justify-between
           .flex.items-center
             .flex-shrink-0
-              img.h-8.w-8[src="site-image.png" alt="Your Company"]
+              img.h-8.w-8[src="/site-image.png" alt="Your Company"]
 
             .hidden.md:block
               .ml-10.flex.items-baseline.space-x-4
@@ -35,29 +35,37 @@ body.h-full
                   | Reports
 
           .hidden.md:block
-            .ml-4.flex.items-center.md:ml-6
-              button.rounded-full.bg-gray-800.p-1.text-gray-400.hover:text-white.focus:outline-none.focus:ring-2.focus:ring-white.focus:ring-offset-2.focus:ring-offset-gray-800[type="button"]
-                span.sr-only
-                  | View notifications
-                svg.h-6.w-6[fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor"]
-                  path[stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"]
+            .ml-4.flex.items-center.md:ml-6[
+              data-controller="dropdown-menu"
+            ]
+              - if (!@is_signed_in)
+                a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.px-3.py-2.text-sm.font-medium[href=signin_path]
+                  | Sign in
+                a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.border.border-gray-200.px-3.py-2.text-sm.font-medium[href=signup_path]
+                  | Sign up
+              - else
+                button.rounded-full.bg-gray-800.p-1.text-gray-400.hover:text-white.focus:outline-none.focus:ring-2.focus:ring-white.focus:ring-offset-2.focus:ring-offset-gray-800[type="button"]
+                  span.sr-only
+                    | View notifications
+                  svg.h-6.w-6[fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor"]
+                    path[stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"]
 
-              .relative.ml-3
-                div
-                  button#user-menu-button.flex.max-w-xs.items-center.rounded-full.bg-gray-800.text-sm.focus:outline-none.focus:ring-2.focus:ring-white.focus:ring-offset-2.focus:ring-offset-gray-800[
-                      data-action="dropdown-menu#toggleMenu"
-                      type="button"
-                    ]
-                    span.sr-only
-                      | Open user menu
-                    img.h-8.w-8.rounded-full[src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""]
+                .relative.ml-3
+                  div
+                    button#user-menu-button.flex.max-w-xs.items-center.rounded-full.bg-gray-800.text-sm.focus:outline-none.focus:ring-2.focus:ring-white.focus:ring-offset-2.focus:ring-offset-gray-800[
+                        data-action="dropdown-menu#toggleMenu"
+                        type="button"
+                      ]
+                      span.sr-only
+                        | Open user menu
+                      img.h-8.w-8.rounded-full[src=@current_user.avatar_url alt=@current_user.name]
 
-                = render partial: "layouts/dropdown_menu"
+                  = render partial: "layouts/dropdown_menu"
 
           .-mr-2.flex.md:hidden
             / Mobile menu button
             button.inline-flex.items-center.justify-center.rounded-md.bg-gray-800.p-2.text-gray-400.hover:bg-gray-700.hover:text-white.focus:outline-none.focus:ring-2.focus:ring-white.focus:ring-offset-2.focus:ring-offset-gray-800[
-                data-action="dropdown-menu#toggleMenu"
+                data-action="mobile-menu#toggleMenu"
                 type="button"
               ]
               span.sr-only
@@ -75,11 +83,4 @@ body.h-full
           | Dashboard
     main
       .mx-auto.max-w-7xl.py-6.sm:px-6.lg:px-8
-        - if (!@is_signed_in)
-          a.button[href=signin_path] Sign In
-          span |
-          a.button[href=signup_path] Sign Up
-        - else
-          a.button[href=signout_path] Sign Out
-
         = yield
