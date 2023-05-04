@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/amatsuda/active_decorator.git
+  revision: fdda5a90db7720bf038259e87e4b1e85e61f4388
+  specs:
+    active_decorator (1.4.0)
+      activesupport
+
+GIT
   remote: https://github.com/varvet/pundit.git
   revision: ec710c757cddb13f896b83ee3d2648ac2899a415
   specs:
@@ -362,6 +369,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_decorator!
   bootsnap
   brakeman
   bundler-audit
