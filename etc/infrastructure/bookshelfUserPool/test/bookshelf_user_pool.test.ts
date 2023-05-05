@@ -1,15 +1,21 @@
 import * as cdk from "aws-cdk-lib";
-import { Capture, Template } from "aws-cdk-lib/assertions";
+import { Template } from "aws-cdk-lib/assertions";
 import * as BookshelfUserPool from "../lib/bookshelf_user_pool-stack";
 
-test("Cognito UserPoolClient  Created", () => {
-  const app = new cdk.App();
-  const stack = new BookshelfUserPool.BookshelfUserPoolStack(
+let app: cdk.App;
+let stack: BookshelfUserPool.BookshelfUserPoolStack;
+let template: Template;
+
+beforeAll(() => {
+  app = new cdk.App();
+  stack = new BookshelfUserPool.BookshelfUserPoolStack(
     app,
     "BookshelfUserPoolTestStack"
   );
-  const template = Template.fromStack(stack);
+  template = Template.fromStack(stack);
+});
 
+test("Parameter Created", () => {
   template.hasParameter("DomainPrefix", {
     Type: "String",
   });
@@ -21,55 +27,59 @@ test("Cognito UserPoolClient  Created", () => {
   template.hasParameter("ClientLogoutUrls", {
     Type: "CommaDelimitedList",
   });
+});
 
-  const allowedOAuthFlows = new Capture();
-  template.hasResourceProperties("AWS::Cognito::UserPoolClient", {
-    AllowedOAuthFlows: allowedOAuthFlows,
+test("Cognito UserPool Created", () => {
+  template.hasResourceProperties("AWS::Cognito::UserPool", {
+    AccountRecoverySetting: {
+      RecoveryMechanisms: [{ Name: "verified_email" }],
+    },
+    AutoVerifiedAttributes: ["email"],
+    DeletionProtection: "ACTIVE",
+    AdminCreateUserConfig: {
+      AllowAdminCreateUserOnly: false, // selfSignUpEnabled
+    },
+    AliasAttributes: ["email"], // signInAliases
+    UsernameConfiguration: {
+      CaseSensitive: false,
+    },
+    Schema: [
+      // standardAttributes
+      {
+        Mutable: true,
+        Name: "email",
+        Required: true,
+      },
+    ],
+    UserAttributeUpdateSettings: {
+      AttributesRequireVerificationBeforeUpdate: [
+        // keepOriginal
+        "email",
+      ],
+    },
   });
-  expect(allowedOAuthFlows.asArray()).toEqual(expect.arrayContaining(["code"]));
+});
 
-  const allowedOAuthScopes = new Capture();
-  template.hasResourceProperties("AWS::Cognito::UserPoolClient", {
-    AllowedOAuthScopes: allowedOAuthScopes,
+test("Cognito UserPoolDomain Created", () => {
+  template.hasResourceProperties("AWS::Cognito::UserPoolDomain", {
+    Domain: { Ref: "DomainPrefix" },
   });
-  expect(allowedOAuthScopes.asArray()).toEqual(
-    expect.arrayContaining(["email", "openid"])
-  );
+});
 
-  const explicitAuthFlows = new Capture();
+test("Cognito UserPoolClient Created", () => {
   template.hasResourceProperties("AWS::Cognito::UserPoolClient", {
-    ExplicitAuthFlows: explicitAuthFlows,
-  });
-  expect(explicitAuthFlows.asArray()).toEqual(
-    expect.arrayContaining(["ALLOW_ADMIN_USER_PASSWORD_AUTH"])
-  );
-
-  const readAttributes = new Capture();
-  template.hasResourceProperties("AWS::Cognito::UserPoolClient", {
-    ReadAttributes: readAttributes,
-  });
-  expect(readAttributes.asArray()).toEqual(
-    expect.arrayContaining(["email", "email_verified", "name"])
-  );
-
-  const writeAttributes = new Capture();
-  template.hasResourceProperties("AWS::Cognito::UserPoolClient", {
-    WriteAttributes: writeAttributes,
-  });
-  expect(writeAttributes.asArray()).toEqual(
-    expect.arrayContaining(["email", "name"])
-  );
-
-  template.hasResourceProperties("AWS::Cognito::UserPoolClient", {
+    ExplicitAuthFlows: [
+      // authFlows -> adminUserPassword
+      "ALLOW_ADMIN_USER_PASSWORD_AUTH",
+      "ALLOW_REFRESH_TOKEN_AUTH",
+    ],
     GenerateSecret: true,
-  });
-
-  template.hasResourceProperties("AWS::Cognito::UserPoolClient", {
-    CallbackURLs: { Ref: "ClientCallbackUrls" },
-    LogoutURLs: { Ref: "ClientLogoutUrls" },
-  });
-
-  template.hasResourceProperties("AWS::Cognito::UserPoolClient", {
-    PreventUserExistenceErrors: "ENABLED",
+    AllowedOAuthFlows: ["code"], // oAuth -> flows
+    AllowedOAuthScopes: ["email", "openid"], // oAuth -> scopes
+    CallbackURLs: { Ref: "ClientCallbackUrls" }, // oAuth -> callbackUrls
+    LogoutURLs: { Ref: "ClientLogoutUrls" }, // oAuth -> logoutUrls
+    PreventUserExistenceErrors: "ENABLED", // preventUserExistenceErrors
+    ReadAttributes: ["email", "email_verified", "name"],
+    WriteAttributes: ["email", "name"],
   });
 });
