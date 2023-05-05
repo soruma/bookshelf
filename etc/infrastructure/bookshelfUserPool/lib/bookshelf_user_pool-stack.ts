@@ -64,6 +64,7 @@ export class BookshelfUserPoolStack extends cdk.Stack {
       authFlows: {
         adminUserPassword: true,
       },
+      generateSecret: true,
       oAuth: {
         flows: {
           authorizationCodeGrant: true,
@@ -72,7 +73,6 @@ export class BookshelfUserPoolStack extends cdk.Stack {
         callbackUrls: clientCallbackUrlsParam.valueAsList,
         logoutUrls: clientLogoutUrlsParam.valueAsList,
       },
-      generateSecret: true,
       preventUserExistenceErrors: true,
       readAttributes: clientReadAttributes,
       writeAttributes: clientWriteAttributes,
