@@ -1,26 +1,26 @@
-# README
+# Bookshelf
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Development
 
-Things you may want to cover:
+### Build container and modules
 
-* Ruby version
+```
+docker compose build
+docker compose run app bin/setup
+```
 
-* System dependencies
+### Insert seed
 
-* Configuration
+```
+docker compose run app bin/rails db:seed
+```
 
-* Database creation
+### Startup
 
-* Database initialization
+```
+docker compose up
+```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Layout
 
 - [Stacked Layouts - Tailwind UI](https://tailwindui.com/components/application-ui/application-shells/stacked#component-10058606cac5398d7fa2c73b64089874)
