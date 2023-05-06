@@ -1,5 +1,9 @@
 - provide(:title, t('Bookcases'))
 
+= content_for(:action_buttons) do
+  - if policy(@new_bookcase).new?
+    = link_to t('bookcases.new'), new_user_bookcase_path, class: "bg-green-600 hover:bg-green-700 text-white rounded-md p-3 mx-1"
+
 p style="color: green" = notice
 
 ul#bookcases.grid.grid-cols-1.gap-6.sm:grid-cols-2.lg:grid-cols-3
@@ -11,6 +15,3 @@ ul#bookcases.grid.grid-cols-1.gap-6.sm:grid-cols-2.lg:grid-cols-3
             = bookcase.name
           p
             = t('models.book', count: bookcase.books.count)
-
-- if policy(@new_bookcase).new?
-  = link_to "New bookcase", new_user_bookcase_path

@@ -5,6 +5,7 @@ ja:
       other: "%{count} 冊"
 
   bookcases:
+    new: "新しい本棚"
     created_success: "本棚が作成されました"
     updated_success: "本棚が更新されました"
     destroyed_success: "本棚が削除されました"

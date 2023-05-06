@@ -6,6 +6,7 @@ en:
       other: "%{count} books"
 
   bookcases:
+    new: "New bookcase"
     created_success: "Bookcase was successfully created"
     updated_success: "Bookcase was successfully updated"
     destroyed_success: "Bookcase was successfully destroyed"
