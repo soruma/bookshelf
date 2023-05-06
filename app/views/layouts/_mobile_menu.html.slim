@@ -2,16 +2,10 @@
   data-mobile-menu-target="mobileMenu"
 ]
   .space-y-1.px-2.pb-3.pt-2.sm:px-3
-    a.bg-gray-900.text-white.block.rounded-md.px-3.py-2.text-base.font-medium[href="#"]
-      | Dashboard
-    a.text-gray-300.hover:bg-gray-700.hover:text-white.block.rounded-md.px-3.py-2.text-base.font-medium[href="#"]
-      | Team
-    a.text-gray-300.hover:bg-gray-700.hover:text-white.block.rounded-md.px-3.py-2.text-base.font-medium[href="#"]
-      | Projects
-    a.text-gray-300.hover:bg-gray-700.hover:text-white.block.rounded-md.px-3.py-2.text-base.font-medium[href="#"]
-      | Calendar
-    a.text-gray-300.hover:bg-gray-700.hover:text-white.block.rounded-md.px-3.py-2.text-base.font-medium[href="#"]
-      | Reports
+    = link_to "Dashboard", root_path, class: mobile_menu_item_class("Dashboard", yield(:title))
+    - if @is_signed_in
+      = link_to "Bookcases", user_bookcases_path(@current_user.name), class: mobile_menu_item_class("Bookcases", yield(:title))
+
   .border-t.border-gray-700.pb-3.pt-4
     .flex.items-center.px-5
       - if @is_signed_in

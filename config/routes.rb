@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: 'home#show'
+  root to: 'dashboard#show'
 
   get '/signin', to: 'session#signin'
   get '/signout', to: 'session#signout'

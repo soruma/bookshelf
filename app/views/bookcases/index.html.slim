@@ -1,12 +1,16 @@
+- provide(:title, t('Bookcases'))
+
 p style="color: green" = notice
 
-h1 Bookcases
-
-#bookcases
+ul#bookcases.grid.grid-cols-1.gap-6.sm:grid-cols-2.lg:grid-cols-3
   - @bookcases.each do |bookcase|
-    == render bookcase
-    p
-      = link_to "Show this bookcase", user_bookcase_path(bookcase.user.name, bookcase)
+    li.col-span-1.divide-y.divide-gray-200.rounded-lg.bg-white.shadow[id="#{dom_id bookcase}"]
+      = link_to user_bookcase_path(bookcase.user.name, bookcase) do
+        .flex.w-full.items-center.justify-between.space-x-6.p-6
+          p
+            = bookcase.name
+          p
+            = t('models.book', count: bookcase.books.count)
 
 - if policy(@new_bookcase).new?
   = link_to "New bookcase", new_user_bookcase_path

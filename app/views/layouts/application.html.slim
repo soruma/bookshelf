@@ -23,22 +23,15 @@ body.h-full
 
             .hidden.md:block
               .ml-10.flex.items-baseline.space-x-4
-                a.bg-gray-900.text-white.rounded-md.px-3.py-2.text-sm.font-medium[href="#"]
-                  | Dashboard
-                a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.px-3.py-2.text-sm.font-medium[href="#"]
-                  | Team
-                a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.px-3.py-2.text-sm.font-medium[href="#"]
-                  | Projects
-                a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.px-3.py-2.text-sm.font-medium[href="#"]
-                  | Calendar
-                a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.px-3.py-2.text-sm.font-medium[href="#"]
-                  | Reports
+                = link_to "Dashboard", root_path, class: menu_item_class("Dashboard", yield(:title))
+                - if @is_signed_in
+                  = link_to "Bookcases", user_bookcases_path(@current_user.name), class: menu_item_class("Bookcases", yield(:title))
 
           .hidden.md:block
-            .ml-4.flex.items-center.md:ml-6[
+            .ml-4.flex.items-center.md:ml-6.space-x-2[
               data-controller="dropdown-menu"
             ]
-              - if (!@is_signed_in)
+              - if !@is_signed_in
                 a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.px-3.py-2.text-sm.font-medium[href=signin_path]
                   | Sign in
                 a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.border.border-gray-200.px-3.py-2.text-sm.font-medium[href=signup_path]
@@ -80,7 +73,8 @@ body.h-full
     header.bg-white.shadow
       .mx-auto.max-w-7xl.px-4.py-6.sm:px-6.lg:px-8
         h1.text-3xl.font-bold.tracking-tight.text-gray-900
-          | Dashboard
+          = yield(:title)
+
     main
       .mx-auto.max-w-7xl.py-6.sm:px-6.lg:px-8
         = yield

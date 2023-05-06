@@ -2,6 +2,8 @@ en:
   models:
     book:
       required_either_isbn_or_asin: "Please enter either ISBN or ASIN"
+      one: "1 book"
+      other: "%{count} books"
 
   bookcases:
     created_success: "Bookcase was successfully created"
