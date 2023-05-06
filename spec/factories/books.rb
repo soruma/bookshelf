@@ -5,7 +5,16 @@ FactoryBot.define do
     title { 'MyString' }
     description { 'MyString' }
     page { 1 }
-    isbn { 'MyString' }
-    asin { 'MyString' }
+    isbn { Digest::MD5.hexdigest(title) }
+
+    factory :book_include_isbn do
+      isbn { Digest::MD5.hexdigest(title) }
+      asin { nil }
+    end
+
+    factory :book_include_asin do
+      asin { Digest::MD5.hexdigest(title) }
+      isbn { nil }
+    end
   end
 end
