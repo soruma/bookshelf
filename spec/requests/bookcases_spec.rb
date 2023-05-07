@@ -40,9 +40,15 @@ RSpec.describe '/:user_name/bookcases' do
   describe 'GET /index' do
     include_context 'when bookcase owner logged in'
 
-    it 'renders a successful response' do
+    it 'renders html a successful response' do
       Bookcase.create!(valid_attributes)
       get user_bookcases_url(owner.name)
+      expect(response).to be_successful
+    end
+
+    it 'renders json a successful response' do
+      Bookcase.create!(valid_attributes)
+      get user_bookcases_url(owner.name).concat('.json')
       expect(response).to be_successful
     end
   end
@@ -50,9 +56,15 @@ RSpec.describe '/:user_name/bookcases' do
   describe 'GET /show' do
     include_context 'when bookcase owner logged in'
 
-    it 'renders a successful response' do
+    it 'renders html a successful response' do
       bookcase = Bookcase.create!(valid_attributes)
       get user_bookcase_url(owner.name, bookcase)
+      expect(response).to be_successful
+    end
+
+    it 'renders json a successful response' do
+      bookcase = Bookcase.create!(valid_attributes)
+      get user_bookcase_url(owner.name, bookcase).concat('.json')
       expect(response).to be_successful
     end
   end
