@@ -30,7 +30,7 @@ class BookcasesController < ApplicationController
     respond_to do |format|
       if @bookcase.save
         format.html do
-          redirect_to user_bookcase_url(@user.name, @bookcase), notice: I18n.t('bookcases.created_success')
+          redirect_to user_bookcase_url(@bookcase.user.name, @bookcase), notice: I18n.t('bookcases.created_success')
         end
         format.json { render :show, status: :created, location: @bookcase }
       else
@@ -45,7 +45,7 @@ class BookcasesController < ApplicationController
     respond_to do |format|
       if @bookcase.update(bookcase_params)
         format.html do
-          redirect_to user_bookcase_url(@user.name, @bookcase), notice: I18n.t('bookcases.updated_success')
+          redirect_to user_bookcase_url(@bookcase.user.name, @bookcase), notice: I18n.t('bookcases.updated_success')
         end
         format.json { render :show, status: :ok, location: @bookcase }
       else
