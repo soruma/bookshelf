@@ -75,3 +75,8 @@ guard :rubocop do
   watch(/.+\.rb$/)
   watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
 end
+
+guard :slim_lint do
+  watch(/.+\.html.*\.slim$/)
+  watch(%r{(?:.+/)?\.slim-lint\.yml$}) { |m| File.dirname(m[0]) }
+end

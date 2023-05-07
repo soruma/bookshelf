@@ -86,11 +86,13 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'guard-rspec', require: false
   gem 'guard-rubocop', require: false
+  gem 'guard-slim_lint', require: false
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'rubocop-capybara'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'slim_lint', require: false
 end
 
 # https://github.com/amatsuda/active_decorator/pull/117
