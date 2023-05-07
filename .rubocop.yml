@@ -25,6 +25,7 @@ Metrics/AbcSize:
   Max: 25
 Metrics/BlockLength:
   Exclude:
+    - config/**/*
     - Guardfile
     - spec/**/*
 Metrics/MethodLength:
