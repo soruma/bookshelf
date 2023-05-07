@@ -12,6 +12,6 @@ class Book < ApplicationRecord
   def required_either_isbn_or_asin
     return if isbn.present? ^ asin.present?
 
-    errors.add(:base, I18n.t('models.book.required_either_isbn_or_asin'))
+    errors.add(:base, I18n.t('.book.required_either_isbn_or_asin'))
   end
 end

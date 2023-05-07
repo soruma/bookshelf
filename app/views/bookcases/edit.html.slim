@@ -1,10 +1,17 @@
 - provide(:title, t('Bookcases'))
 
-== render "form", bookcase: @bookcase
+.rounded-lg.bg-white.shadow
+  .px-4.py-5.sm:p-6
+    = link_to t(".back_to_bookcase"), user_bookcase_path(@user.name, @bookcase), class: "text-blue-600"
 
-br
+    h2.text-lg.font-semibold.leading-10.text-gray-900
+      = t(".title")
 
-div
-  => link_to "Show this bookcase", user_bookcase_path(@user.name, @bookcase)
-  '|
-  =< link_to "Back to bookcases", user_bookcases_path(@user.name)
+    = form_with(model: @bookcase, url: user_bookcase_path(@user.name, @bookcase)) do |form|
+      == render "form_items", form: form, bookcase: @bookcase
+
+      .mt-6.flex.items-center.justify-end.gap-x-4
+        = link_to t(".cancel"), user_bookcase_path(@user.name, @bookcase), class: "text-blue-600"
+
+        = form.hidden_field :user_id, value: @user.id
+        = form.submit class: "bg-green-600 hover:bg-green-700 text-white rounded-md p-2 mx-1 px-4"

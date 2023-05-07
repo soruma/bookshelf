@@ -1,12 +1,27 @@
 en:
-  models:
-    book:
-      required_either_isbn_or_asin: "Please enter either ISBN or ASIN"
-      one: "1 book"
-      other: "%{count} books"
+  activerecord:
+    models:
+      book:
+        required_either_isbn_or_asin: "Please enter either ISBN or ASIN"
+        one: "1 book"
+        other: "%{count} books"
 
   bookcases:
-    new: "New bookcase"
+    index:
+      new_bookcase: "New bookcase"
+    new:
+      title: "New bookcase"
+      back_to_bookcases: "< Back to bookcases"
+    show:
+      title: "Show bookcase"
+      back_to_bookcases: "< Back to bookcases"
+      edit_this_bookcase: "Edit this bookcase"
+      destroy_this_bookcase: "Destroy this bookcase"
+      are_you_sure_you_want_to_destroy_this_bookcase: "Are you sure you want to destroy this bookcase?"
+    edit:
+      title: "Edit bookcase"
+      back_to_bookcase: "< Back to bookcase"
+      cancel: "Edit cancel"
     created_success: "Bookcase was successfully created"
     updated_success: "Bookcase was successfully updated"
     destroyed_success: "Bookcase was successfully destroyed"
