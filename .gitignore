@@ -38,3 +38,6 @@
 
 # Ignore generated ER Diagram
 /erd.pdf
+
+# Ignore generated SimpleCov
+/coverage/*

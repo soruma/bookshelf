@@ -77,6 +77,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'simplecov', require: false
   gem 'webdrivers'
 end
 
@@ -89,7 +90,6 @@ group :development, :test do
   gem 'rubocop-capybara'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
-  gem 'simplecov', require: false
 end
 
 # https://github.com/amatsuda/active_decorator/pull/117
