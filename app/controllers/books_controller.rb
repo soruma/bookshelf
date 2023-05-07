@@ -5,9 +5,12 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    authorize Book
   end
 
-  def show; end
+  def show
+    authorize @book
+  end
 
   private
 

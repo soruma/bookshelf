@@ -7,6 +7,8 @@ Dir[Rails.root.join('db/seeds/*.json')].each do |path|
     objs = JSON.load(file)[classes]
 
     klass = classes.singularize.camelize.constantize
-    klass.upsert_all(objs)
+    klass.upsert_all(objs, unique_by: :id)
+
+    ActiveRecord::Base.connection.execute("SELECT SETVAL('#{classes}_id_seq', #{klass.maximum(:id)})")
   end
 end

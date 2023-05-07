@@ -2,72 +2,72 @@
   "bookcases": [
     {
       "id": 1,
-      "user_id": 100,
+      "user_id": 1,
       "name": "lorette's bookcase 1"
     },
     {
       "id": 2,
-      "user_id": 100,
+      "user_id": 1,
       "name": "lorette's bookcase 2"
     },
     {
       "id": 3,
-      "user_id": 100,
+      "user_id": 1,
       "name": "lorette's bookcase 3"
     },
     {
       "id": 4,
-      "user_id": 100,
+      "user_id": 1,
       "name": "lorette's bookcase 4"
     },
     {
       "id": 5,
-      "user_id": 101,
+      "user_id": 2,
       "name": "carita.lueilwitz's bookcase 1"
     },
     {
       "id": 6,
-      "user_id": 101,
+      "user_id": 2,
       "name": "carita.lueilwitz's bookcase 2"
     },
     {
       "id": 7,
-      "user_id": 102,
+      "user_id": 3,
       "name": "delpha's bookcase 1"
     },
     {
       "id": 8,
-      "user_id": 102,
+      "user_id": 3,
       "name": "delpha's bookcase 2"
     },
     {
       "id": 9,
-      "user_id": 102,
+      "user_id": 3,
       "name": "delpha's bookcase 3"
     },
     {
       "id": 10,
-      "user_id": 102,
+      "user_id": 3,
       "name": "delpha's bookcase 4"
     },
     {
       "id": 11,
-      "user_id": 102,
+      "user_id": 3,
       "name": "delpha's bookcase 5"
     },
     {
       "id": 12,
-      "user_id": 103,
+      "user_id": 4,
       "name": "temika's bookcase 1"
     },
     {
       "id": 13,
-      "user_id": 104,
+      "user_id": 5,
       "name": "jamaal's bookcase 1"
     },
     {
       "id": 14,
-      "user_id": 105,
+      "user_id": 6,
       "name": "tijuana's bookcase 1"
     }
   ]
