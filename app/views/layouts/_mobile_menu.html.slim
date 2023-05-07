@@ -5,6 +5,7 @@
     = link_to "Dashboard", root_path, class: mobile_menu_item_class("Dashboard", yield(:title))
     - if @is_signed_in
       = link_to "Bookcases", user_bookcases_path(@current_user.name), class: mobile_menu_item_class("Bookcases", yield(:title))
+    = link_to "Books", books_path, class: mobile_menu_item_class("Books", yield(:title))
 
   .border-t.border-gray-700.pb-3.pt-4
     .flex.items-center.px-5

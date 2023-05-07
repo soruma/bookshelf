@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'auth/signin'
   get 'auth/signout'
 
+  resources :books, only: %i[index show]
+
   resources :users, param: :name, only: [:show], path: '/' do
     resources :bookcases
   end
