@@ -2,8 +2,10 @@ ja:
   activerecord:
     models:
       book:
-        required_either_isbn_or_asin: "ISBNまたはASINのどちらか一方を入力してください"
         other: "%{count} 冊"
+
+  book:
+    required_either_isbn_or_asin: "ISBNまたはASINのどちらか一方を入力してください"
 
   bookcases:
     index:

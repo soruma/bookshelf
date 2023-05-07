@@ -29,6 +29,11 @@ RSpec.describe Book do
       it 'is invalid' do
         expect(book).to be_invalid
       end
+
+      it 'is contains the error message' do
+        book.valid?
+        expect(book.errors[:base]).to contain_exactly('Please enter either ISBN or ASIN')
+      end
     end
 
     context 'when isbn is nil and asin is nil' do
@@ -55,6 +60,11 @@ RSpec.describe Book do
 
       it 'is invalid' do
         expect(book).to be_invalid
+      end
+
+      it 'is contains the error message' do
+        book.valid?
+        expect(book.errors[:base]).to contain_exactly('Please enter either ISBN or ASIN')
       end
     end
   end

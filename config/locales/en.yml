@@ -2,9 +2,11 @@ en:
   activerecord:
     models:
       book:
-        required_either_isbn_or_asin: "Please enter either ISBN or ASIN"
         one: "1 book"
         other: "%{count} books"
+
+  book:
+    required_either_isbn_or_asin: "Please enter either ISBN or ASIN"
 
   bookcases:
     index:
