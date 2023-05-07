@@ -25,7 +25,6 @@ Metrics/MethodLength:
   Exclude:
     - 'app/controllers/application_controller.rb'
     - 'app/controllers/auth_controller.rb'
-    - 'lib/cognito/client.rb'
 
 # Offense count: 1
 RSpec/AnyInstance:
