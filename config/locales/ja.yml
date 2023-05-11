@@ -26,3 +26,7 @@ ja:
     created_success: "本棚が作成されました"
     updated_success: "本棚が更新されました"
     destroyed_success: "本棚が削除されました"
+
+  books:
+    show:
+      back_to_books: "< 本一覧へ"

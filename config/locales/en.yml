@@ -27,3 +27,7 @@ en:
     created_success: "Bookcase was successfully created"
     updated_success: "Bookcase was successfully updated"
     destroyed_success: "Bookcase was successfully destroyed"
+
+  books:
+    show:
+      back_to_books: "< Back to books"

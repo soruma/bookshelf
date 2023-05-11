@@ -1,0 +1,34 @@
+.space-y-12
+  .border-b.border-gray-900/10.pb-2
+    dl.divide-y.divide-gray-100[id="#{dom_id book}"]
+      .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+        dt.text-sm.font-medium.leading-6.text-gray-900
+          = Book.human_attribute_name(:authors)
+        dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+          = book.authors.map(&:name).join(", ")
+
+      .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+        dt.text-sm.font-medium.leading-6.text-gray-900
+          = Book.human_attribute_name(:description)
+        dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+          = book.description
+
+      .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+        dt.text-sm.font-medium.leading-6.text-gray-900
+          = Book.human_attribute_name(:page)
+        dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+          = book.page
+
+      - if book.isbn
+        .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+          dt.text-sm.font-medium.leading-6.text-gray-900
+            = Book.human_attribute_name(:isbn)
+          dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+            = book.isbn
+
+      - if book.asin
+        .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+          dt.text-sm.font-medium.leading-6.text-gray-900
+            = Book.human_attribute_name(:asin)
+          dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
+            = book.asin
