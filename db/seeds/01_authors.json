@@ -1,0 +1,68 @@
+{
+  "authors": [
+    {
+      "id": 1,
+      "name": "Debra Cameron"
+    },
+    {
+      "id": 2,
+      "name": "James Elliott"
+    },
+    {
+      "id": 3,
+      "name": "Marc Loy"
+    },
+    {
+      "id": 4,
+      "name": "Eric Raymond"
+    },
+    {
+      "id": 5,
+      "name": "Bill Rosenblatt"
+    },
+    {
+      "id": 6,
+      "name": "宮下 尚"
+    },
+    {
+      "id": 7,
+      "name": "半田 剣一"
+    },
+    {
+      "id": 8,
+      "name": "新井 貴之"
+    },
+    {
+      "id": 9,
+      "name": "鈴木 和也"
+    },
+    {
+      "id": 10,
+      "name": "伊藤 淳一"
+    },
+    {
+      "id": 11,
+      "name": "Paolo Perrotta"
+    },
+    {
+      "id": 12,
+      "name": "角 征典"
+    },
+    {
+      "id": 13,
+      "name": "仙塲 大也"
+    },
+    {
+      "id": 14,
+      "name": "Dustin Boswell"
+    },
+    {
+      "id": 15,
+      "name": "Trevor Foucher"
+    },
+    {
+      "id": 16,
+      "name": "須藤 功平"
+    }
+  ]
+}

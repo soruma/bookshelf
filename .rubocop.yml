@@ -30,5 +30,8 @@ Metrics/BlockLength:
     - spec/**/*
 Metrics/MethodLength:
   Max: 15
+Rails/SkipsModelValidations:
+  Exclude:
+    - db/seeds.rb
 Style/Documentation:
   Enabled: false

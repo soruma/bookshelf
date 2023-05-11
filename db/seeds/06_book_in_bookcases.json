@@ -1,0 +1,34 @@
+{
+  "book_in_bookcases": [
+    {
+      "id": 1,
+      "bookcase_id": 1,
+      "book_id": 1
+    },
+    {
+      "id": 2,
+      "bookcase_id": 1,
+      "book_id": 2
+    },
+    {
+      "id": 3,
+      "bookcase_id": 1,
+      "book_id": 3
+    },
+    {
+      "id": 4,
+      "bookcase_id": 1,
+      "book_id": 4
+    },
+    {
+      "id": 5,
+      "bookcase_id": 2,
+      "book_id": 5
+    },
+    {
+      "id": 6,
+      "bookcase_id": 2,
+      "book_id": 1
+    }
+  ]
+}
