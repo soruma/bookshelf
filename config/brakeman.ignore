@@ -1,0 +1,29 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Command Injection",
+      "warning_code": 14,
+      "fingerprint": "d6d6be6e36c9a2d7b0c8a3d1a19978468c654d59b9b0e57d2a54b26db18ebff2",
+      "check_name": "Execute",
+      "message": "Possible command injection",
+      "file": "lib/guard/slimcop.rb",
+      "line": 36,
+      "link": "https://brakemanscanner.org/docs/warning_types/command_injection/",
+      "code": "system(\"slimcop #{paths.join(\" \")}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Guard::Slimcop",
+        "method": "run"
+      },
+      "user_input": "paths.join(\" \")",
+      "confidence": "Medium",
+      "cwe_id": [
+        77
+      ],
+      "note": ""
+    }
+  ],
+  "updated": "2023-05-13 05:34:20 +0000",
+  "brakeman_version": "5.4.1"
+}
