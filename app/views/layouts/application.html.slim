@@ -32,12 +32,7 @@ body.h-full
             .ml-4.flex.items-center.md:ml-6.space-x-2[
               data-controller="dropdown-menu"
             ]
-              - if !@is_signed_in
-                a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.px-3.py-2.text-sm.font-medium[href=signin_path]
-                  | Sign in
-                a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.border.border-gray-200.px-3.py-2.text-sm.font-medium[href=signup_path]
-                  | Sign up
-              - else
+              - if @is_signed_in
                 button.rounded-full.bg-gray-800.p-1.text-gray-400.hover:text-white.focus:outline-none.focus:ring-2.focus:ring-white.focus:ring-offset-2.focus:ring-offset-gray-800[type="button"]
                   span.sr-only
                     | View notifications
@@ -55,6 +50,12 @@ body.h-full
                       img.h-8.w-8.rounded-full[src=@current_user.avatar_url alt=@current_user.name]
 
                   = render partial: "layouts/dropdown_menu"
+
+              - else
+                a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.px-3.py-2.text-sm.font-medium[href=signin_path]
+                  | Sign in
+                a.text-gray-300.hover:bg-gray-700.hover:text-white.rounded-md.border.border-gray-200.px-3.py-2.text-sm.font-medium[href=signup_path]
+                  | Sign up
 
           .-mr-2.flex.md:hidden
             / Mobile menu button
