@@ -4,11 +4,4 @@
   .px-4.py-5.sm:p-6
     = link_to t(".back_to_books"), books_path, class: "text-blue-600"
 
-    h2.text-lg.font-semibold.leading-10.text-gray-900
-      = @book.title
-
-    .grid
-      = image_tag(@book.image_url, class: "place-self-center w-60")
-
-
     == render @book
