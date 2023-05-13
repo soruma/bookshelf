@@ -6,7 +6,6 @@ linters:
 
   RuboCop:
     ignored_cops:
-      - Layout/SpaceInsideArrayLiteralBrackets
       - Style/StringLiterals
       # Below this is the default value
       - Layout/ArgumentAlignment

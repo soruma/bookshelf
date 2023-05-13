@@ -7,8 +7,8 @@
             (bookcase.errors[:name].empty? ? "" : " text-red-500")]
         .mt-2
           = form.text_field :name,
-            class: [ "block w-full rounded-md py-1.5 text-gray-900 shadow-sm sm:text-sm sm:leading-6",
+            class: ["block w-full rounded-md py-1.5 text-gray-900 shadow-sm sm:text-sm sm:leading-6",
               "border-0 ring-1 ring-inset ring-gray-300",
               "focus:ring-2 focus:ring-inset focus:ring-indigo-600",
-              (bookcase.errors[:name].empty? ? "" : " ring-red-500") ]
+              (bookcase.errors[:name].empty? ? "" : " ring-red-500")]
         p.text-sm.leading-6.text-red-500 = bookcase.errors.full_messages_for(:name).join(" ")
