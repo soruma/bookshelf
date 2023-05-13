@@ -7,7 +7,6 @@ linters:
   RuboCop:
     ignored_cops:
       - Layout/SpaceInsideArrayLiteralBrackets
-      - Style/HashSyntax
       - Style/NegatedIfElseCondition
       - Style/QuotedSymbols
       - Style/StringLiterals

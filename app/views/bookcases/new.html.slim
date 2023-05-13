@@ -8,7 +8,7 @@
       = t(".title")
 
     = form_with(model: @bookcase, url: user_bookcases_path) do |form|
-      == render "form_items", form: form, bookcase: @bookcase
+      == render "form_items", form:, bookcase: @bookcase
 
       .mt-6.flex.items-center.justify-end.gap-x-4
         = form.hidden_field :user_id, value: @user.id

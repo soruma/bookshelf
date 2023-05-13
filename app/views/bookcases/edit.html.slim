@@ -8,7 +8,7 @@
       = t(".title")
 
     = form_with(model: @bookcase, url: user_bookcase_path(@bookcase.user.name, @bookcase)) do |form|
-      == render "form_items", form: form, bookcase: @bookcase
+      == render "form_items", form:, bookcase: @bookcase
 
       .mt-6.flex.items-center.justify-end.gap-x-4
         = link_to t(".cancel"), user_bookcase_path(@bookcase.user.name, @bookcase), class: "text-blue-600"
