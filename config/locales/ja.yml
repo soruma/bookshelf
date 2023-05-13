@@ -27,6 +27,10 @@ ja:
     updated_success: "本棚が更新されました"
     destroyed_success: "本棚が削除されました"
 
+  book_in_bookcases:
+    show:
+      back_to_bookcase: "< 本棚へ"
+
   books:
     show:
       back_to_books: "< 本一覧へ"

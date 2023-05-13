@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :books, only: %i[index show]
 
   resources :users, param: :name, only: [:show], path: '/' do
-    resources :bookcases
+    resources :bookcases do
+      resources :book_in_bookcases, only: [:show]
+    end
   end
 end

@@ -28,6 +28,10 @@ en:
     updated_success: "Bookcase was successfully updated"
     destroyed_success: "Bookcase was successfully destroyed"
 
+  book_in_bookcases:
+    show:
+      back_to_bookcase: "< Back to bookcase"
+
   books:
     show:
       back_to_books: "< Back to books"
