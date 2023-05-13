@@ -6,12 +6,4 @@ ul#books.grid.grid-cols-1.gap-6.sm:grid-cols-2.lg:grid-cols-3
       = link_to book_path(book) do
         .flex.w-full.items-center.justify-between.space-x-6.p-6
           .flex-1.truncate
-            .grid
-              = image_tag(book.image_url, class: "place-self-center w-48")
-
-            .flex.items-center.space-x-3
-              h2.text-lg.font-medium.text-gray-900
-                = book.title
-
-            p.mt-1.truncate.text-sm.text-gray-500
-              = book.authors.map(&:name).join(" ")
+            = render "books/book_panel", book:
