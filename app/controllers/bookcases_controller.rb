@@ -72,7 +72,7 @@ class BookcasesController < ApplicationController
   end
 
   def set_bookcase
-    @bookcase = Bookcase.on_user_at(@user).find(params[:id])
+    @bookcase = Bookcase.on_user_at(@user).eager_load(books: [:authors]).find(params[:id])
   end
 
   def bookcase_params
