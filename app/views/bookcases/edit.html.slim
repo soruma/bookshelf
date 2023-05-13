@@ -2,16 +2,16 @@
 
 .rounded-lg.bg-white.shadow
   .px-4.py-5.sm:p-6
-    = link_to t(".back_to_bookcase"), user_bookcase_path(@bookcase.user.name, @bookcase), class: "text-blue-600"
+    = link_to t('.back_to_bookcase'), user_bookcase_path(@bookcase.user.name, @bookcase), class: 'text-blue-600'
 
     h2.text-lg.font-semibold.leading-10.text-gray-900
-      = t(".title")
+      = t('.title')
 
     = form_with(model: @bookcase, url: user_bookcase_path(@bookcase.user.name, @bookcase)) do |form|
-      == render "form_items", form:, bookcase: @bookcase
+      == render 'form_items', form:, bookcase: @bookcase
 
       .mt-6.flex.items-center.justify-end.gap-x-4
-        = link_to t(".cancel"), user_bookcase_path(@bookcase.user.name, @bookcase), class: "text-blue-600"
+        = link_to t('.cancel'), user_bookcase_path(@bookcase.user.name, @bookcase), class: 'text-blue-600'
 
         = form.hidden_field :user_id, value: @bookcase.user.id
-        = form.submit class: "bg-green-600 hover:bg-green-700 text-white rounded-md p-2 mx-1 px-4"
+        = form.submit class: 'bg-green-600 hover:bg-green-700 text-white rounded-md p-2 mx-1 px-4'
