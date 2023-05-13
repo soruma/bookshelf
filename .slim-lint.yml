@@ -10,7 +10,6 @@ linters:
       - Style/NegatedIfElseCondition
       - Style/QuotedSymbols
       - Style/StringLiterals
-      - Style/ZeroLengthPredicate
       # Below this is the default value
       - Layout/ArgumentAlignment
       - Layout/ArrayAlignment
