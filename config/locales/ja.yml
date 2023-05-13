@@ -7,29 +7,30 @@ ja:
   book:
     required_either_isbn_or_asin: "ISBNまたはASINのどちらか一方を入力してください"
 
-  bookcases:
-    index:
-      new_bookcase: "新しい本棚"
-    new:
-      title: "新しい本棚"
-      back_to_bookcases: "< 本棚一覧へ"
-    show:
-      title: "本棚詳細"
-      back_to_bookcases: "< 本棚一覧へ"
-      edit_this_bookcase: "変更"
-      destroy_this_bookcase: "削除"
-      are_you_sure_you_want_to_destroy_this_bookcase: "この本棚を削除しますか?"
-    edit:
-      title: "本棚変更"
-      back_to_bookcase: "< 本棚へ"
-      cancel: "キャンセル"
-    created_success: "本棚が作成されました"
-    updated_success: "本棚が更新されました"
-    destroyed_success: "本棚が削除されました"
+  users:
+    bookcases:
+      index:
+        new_bookcase: "新しい本棚"
+      new:
+        title: "新しい本棚"
+        back_to_bookcases: "< 本棚一覧へ"
+      show:
+        title: "本棚詳細"
+        back_to_bookcases: "< 本棚一覧へ"
+        edit_this_bookcase: "変更"
+        destroy_this_bookcase: "削除"
+        are_you_sure_you_want_to_destroy_this_bookcase: "この本棚を削除しますか?"
+      edit:
+        title: "本棚変更"
+        back_to_bookcase: "< 本棚へ"
+        cancel: "キャンセル"
+      created_success: "本棚が作成されました"
+      updated_success: "本棚が更新されました"
+      destroyed_success: "本棚が削除されました"
 
-  book_in_bookcases:
-    show:
-      back_to_bookcase: "< 本棚へ"
+      book_in_bookcases:
+        show:
+          back_to_bookcase: "< 本棚へ"
 
   books:
     show:

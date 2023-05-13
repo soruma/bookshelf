@@ -6,5 +6,5 @@ json.book do
   json.partial! 'books/book', book: @book_in_bookcase.book
 end
 json.bookcase do
-  json.partial! 'bookcases/bookcase', bookcase: @bookcase
+  json.partial! 'users/bookcases/bookcase', bookcase: @bookcase
 end
