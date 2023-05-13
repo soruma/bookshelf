@@ -8,7 +8,6 @@ linters:
     ignored_cops:
       - Layout/SpaceInsideArrayLiteralBrackets
       - Style/NegatedIfElseCondition
-      - Style/QuotedSymbols
       - Style/StringLiterals
       # Below this is the default value
       - Layout/ArgumentAlignment
