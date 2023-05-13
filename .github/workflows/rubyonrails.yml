@@ -59,4 +59,4 @@ jobs:
       - name: Lint Ruby files
         run: bundle exec rubocop --parallel
       - name: Lint Slim files
-        run: bundle exec slim-lint app/views
+        run: bundle exec slimcop

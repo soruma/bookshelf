@@ -76,7 +76,10 @@ guard :rubocop do
   watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
 end
 
-guard :slim_lint do
+guard :slimcop do
+  require './lib/guard/slimcop'
+
   watch(/.+\.html.*\.slim$/)
-  watch(%r{(?:.+/)?\.slim-lint\.yml$}) { |m| File.dirname(m[0]) }
+  watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
+  watch(%r{(?:.+/)?\.slimcop\.yml$}) { |m| File.dirname(m[0]) }
 end

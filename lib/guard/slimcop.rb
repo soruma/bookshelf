@@ -1,0 +1,70 @@
+# frozen_string_literal: true
+
+require 'guard/compat/plugin'
+require 'colorize'
+
+# https://github.com/mike927/guard-slimlint/blob/master/lib/guard/slimlint.rb
+module Guard
+  class Slimcop < Plugin
+    attr_accessor :notify_on, :all_on_start
+
+    def initialize(options = {})
+      @notify_on    = options.fetch(:notify_on, :failure)
+      @all_on_start = options.fetch(:all_on_start, true)
+      super
+    end
+
+    def start
+      run_all if all_on_start
+    end
+
+    def run_all
+      run
+    end
+
+    def run_on_modifications(paths)
+      run(paths)
+    end
+
+    def run_on_additions(paths)
+      run(paths)
+    end
+
+    private
+
+    def run(paths = ['.'])
+      result = system "slimcop #{paths.join(' ')}"
+      if result
+        UI.info 'No Slim offences detected'.green
+      else
+        UI.info 'Slim offences has been detected'.red
+      end
+      check_and_notify(result)
+    end
+
+    def notification_allowed?(result)
+      case notify_on
+      when :failure then !result
+      when :success then result
+      when :both then true
+      when :none then false
+      end
+    end
+
+    def check_and_notify(result)
+      notify(result) if notification_allowed?(result)
+    end
+
+    def image(result)
+      result ? :success : :failed
+    end
+
+    def message(result)
+      result ? 'No slim offences' : 'Slim offences detected'
+    end
+
+    def notify(result)
+      Notifier.notify(message(result), title: 'Slimcop results', image: image(result))
+    end
+  end
+end
