@@ -92,6 +92,7 @@ group :development, :test do
   gem 'rubocop-capybara'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'slimcop', require: false
   gem 'slim_lint', require: false
 end
 
