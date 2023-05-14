@@ -4,4 +4,4 @@
   .px-4.py-5.sm:p-6
     = link_to t('.back_to_bookcase'), user_bookcase_path(@user.name, @bookcase), class: 'text-blue-600'
 
-    == render 'books/book', book: @book
+    == render 'books/book', book: @book_in_bookcase.book

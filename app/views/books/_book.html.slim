@@ -1,8 +1,8 @@
 h2.text-lg.font-semibold.leading-10.text-gray-900
-  = @book.title
+  = book.title
 
 .grid
-  = image_tag(@book.image_url, class: 'place-self-center w-60')
+  = image_tag(book.image_url, class: 'place-self-center w-60')
 
 .space-y-12
   .border-b.border-gray-900/10.pb-2

@@ -1,3 +1,7 @@
 - provide(:title, 'Books')
 
-= render 'books_panel', books: @books
+ul#books.grid.grid-cols-1.gap-6.sm:grid-cols-2.lg:grid-cols-3
+  - @books.each do |book|
+    li.col-span-1.divide-y.divide-gray-200.rounded-lg.bg-white.shadow[id="#{dom_id book}"]
+      = link_to book_path(book)
+        = render 'books_panel_item', book:

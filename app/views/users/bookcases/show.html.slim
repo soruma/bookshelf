@@ -24,4 +24,7 @@ p style="color: green" = notice
             class: 'bg-red-600 hover:bg-red-700 text-white rounded-md p-2 mx-1 px-4'
 
     .mt-2
-      = render 'books/books_panel', books: @bookcase.books, user: @user, bookcase: @bookcase
+      ul#books.grid.grid-cols-1.gap-6.sm:grid-cols-2.lg:grid-cols-3
+        - @bookcase.book_in_bookcase.each do |book_in_bookcase|
+          = link_to user_bookcase_book_in_bookcase_path(@bookcase.user.name, @bookcase, book_in_bookcase)
+            = render 'books/books_panel_item', book: book_in_bookcase.book

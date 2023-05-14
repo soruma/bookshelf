@@ -31,7 +31,8 @@ module Users
       respond_to do |format|
         if @bookcase.save
           format.html do
-            redirect_to user_bookcase_url(@bookcase.user.name, @bookcase), notice: I18n.t('bookcases.created_success')
+            redirect_to user_bookcase_url(@bookcase.user.name, @bookcase),
+                        notice: I18n.t('users.bookcases.created_success')
           end
           format.json { render :show, status: :created, location: @bookcase }
         else
@@ -46,7 +47,8 @@ module Users
       respond_to do |format|
         if @bookcase.update(bookcase_params)
           format.html do
-            redirect_to user_bookcase_url(@bookcase.user.name, @bookcase), notice: I18n.t('bookcases.updated_success')
+            redirect_to user_bookcase_url(@bookcase.user.name, @bookcase),
+                        notice: I18n.t('users.bookcases.updated_success')
           end
           format.json { render :show, status: :ok, location: @bookcase }
         else
@@ -61,7 +63,7 @@ module Users
       @bookcase.destroy
 
       respond_to do |format|
-        format.html { redirect_to user_bookcases_url, notice: I18n.t('bookcases.destroyed_success') }
+        format.html { redirect_to user_bookcases_url, notice: I18n.t('users.bookcases.destroyed_success') }
         format.json { head :no_content }
       end
     end
@@ -73,7 +75,7 @@ module Users
     end
 
     def set_bookcase
-      @bookcase = Bookcase.on_user_at(@user).eager_load(books: [:authors]).find(params[:id])
+      @bookcase = Bookcase.on_user_at(@user).eager_load(book_in_bookcase: [:book], books: [:authors]).find(params[:id])
     end
 
     def bookcase_params
