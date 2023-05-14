@@ -31,6 +31,8 @@ ja:
       book_in_bookcases:
         show:
           back_to_bookcase: "< 本棚へ"
+          take_out_from_bookcase: "本棚から出す"
+        off_the_bookcase: "%{title} を本棚から出しました"
 
   books:
     show:

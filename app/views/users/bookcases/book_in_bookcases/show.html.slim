@@ -5,3 +5,9 @@
     = link_to t('.back_to_bookcase'), user_bookcase_path(@user.name, @bookcase), class: 'text-blue-600'
 
     == render 'books/book', book: @book_in_bookcase.book
+
+    .mt-6.flex.items-center.justify-end.gap-x-4
+      - if policy(@book_in_bookcase).destroy?
+        = button_to t('.take_out_from_bookcase'),
+            user_bookcase_book_in_bookcase_path(@user.name, @bookcase, @book_in_bookcase),
+            method: :delete, class: 'bg-red-600 hover:bg-red-700 text-white rounded-md p-2 mx-1 px-4'

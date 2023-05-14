@@ -32,6 +32,8 @@ en:
       book_in_bookcases:
         show:
           back_to_bookcase: "< Back to bookcase"
+          take_out_from_bookcase: "Take out form bookcase"
+        off_the_bookcase: "%{title} off the bookcase"
 
   books:
     show:

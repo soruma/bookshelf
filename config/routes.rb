@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :users, param: :name, only: [:show], path: '/' do
     resources :bookcases, controller: 'users/bookcases' do
-      resources :book_in_bookcases, controller: 'users/bookcases/book_in_bookcases', only: [:show]
+      resources :book_in_bookcases, controller: 'users/bookcases/book_in_bookcases', only: %i[show destroy]
     end
   end
 end
