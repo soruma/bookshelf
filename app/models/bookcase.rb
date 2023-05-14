@@ -7,5 +7,5 @@ class Bookcase < ApplicationRecord
 
   validates :name, presence: true
 
-  scope :on_user_at, ->(user) { where(user:) }
+  scope :owned_by, ->(user) { where(user:) }
 end

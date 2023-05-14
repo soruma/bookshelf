@@ -32,7 +32,7 @@ module Users
       end
 
       def set_bookcase
-        @bookcase = Bookcase.on_user_at(@user).find(params[:bookcase_id])
+        @bookcase = Bookcase.owned_by(@user).find(params[:bookcase_id])
       end
 
       def set_book_in_bookcase
