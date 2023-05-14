@@ -1,7 +1,19 @@
 - provide(:title, 'Books')
 
+p style="color: green" = notice
+
 .rounded-lg.bg-white.shadow
   .px-4.py-5.sm:p-6
     = link_to t('.back_to_books'), books_path, class: 'text-blue-600'
 
     == render @book
+
+    ul
+      - @bookcases.each do |bookcase|
+        li
+          - if bookcase.already_inside?(@book)
+            = link_to book_bookcase_book_in_bookcase_path(@book, bookcase), data: { 'turbo-method': :delete }, class: 'text-red-600'
+              = t('.remove_from_bookcase', bookcase_name: bookcase.name)
+          - else
+            = link_to book_bookcase_book_in_bookcase_path(@book, bookcase), data: { 'turbo-method': :post }, class: 'text-green-600'
+              = t('.add_to_bookcase', bookcase_name: bookcase.name)

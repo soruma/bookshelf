@@ -8,4 +8,8 @@ class Bookcase < ApplicationRecord
   validates :name, presence: true
 
   scope :owned_by, ->(user) { where(user:) }
+
+  def already_inside?(book)
+    books.exists?(books: { id: book.id })
+  end
 end

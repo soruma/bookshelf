@@ -37,3 +37,10 @@ ja:
   books:
     show:
       back_to_books: "< 本一覧へ"
+      remove_from_bookcase: "%{bookcase_name} から削除"
+      add_to_bookcase: "Add to %{bookcase_name} へ追加"
+
+    bookcases:
+      book_in_bookcases:
+        added_book_to_the_bookcase: "%{bookcase_name} に本を追加しました"
+        take_out_a_book_from_the_bookcase: "%{bookcase_name} から本を削除しました"

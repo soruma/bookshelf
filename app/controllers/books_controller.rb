@@ -9,6 +9,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    @bookcases = Bookcase.owned_by(current_user)
     authorize @book
   end
 

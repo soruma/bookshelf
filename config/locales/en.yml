@@ -38,3 +38,10 @@ en:
   books:
     show:
       back_to_books: "< Back to books"
+      remove_from_bookcase: "Remove from %{bookcase_name}"
+      add_to_bookcase: "Add to %{bookcase_name}"
+
+    bookcases:
+      book_in_bookcases:
+        added_book_to_the_bookcase: "Added book to the %{bookcase_name}"
+        take_out_a_book_from_the_bookcase: "Take out a book from the %{bookcase_name}"
