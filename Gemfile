@@ -89,6 +89,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'rubocop-capybara'
+  gem 'rubocop-factory_bot', require: false
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'slimcop', require: false
