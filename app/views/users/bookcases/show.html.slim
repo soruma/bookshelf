@@ -1,7 +1,5 @@
 - provide(:title, t('Bookcases'))
 
-p style="color: green" = notice
-
 .rounded-lg.bg-white.shadow
   .px-4.py-5.sm:p-6
     = link_to t('.back_to_bookcases'), user_bookcases_path(@bookcase.user.name), class: 'text-blue-600'
