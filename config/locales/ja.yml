@@ -2,7 +2,7 @@ ja:
   activerecord:
     models:
       book:
-        other: "%{count} 冊"
+        other: "本"
 
   book:
     required_either_isbn_or_asin: "ISBNまたはASINのどちらか一方を入力してください"
@@ -11,6 +11,8 @@ ja:
     bookcases:
       index:
         new_bookcase: "新しい本棚"
+        book_count:
+          other: "%{count} 冊"
       new:
         title: "新しい本棚"
         back_to_bookcases: "< 本棚一覧へ"

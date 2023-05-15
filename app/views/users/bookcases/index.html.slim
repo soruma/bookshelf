@@ -13,4 +13,4 @@ ul#bookcases.grid.grid-cols-1.gap-6.sm:grid-cols-2.lg:grid-cols-3
           h3.text-sm.font-medium.text-gray-900
             = bookcase.name
           p.mt-1.text-sm.text-glay-500
-            = t('activerecord.models.book', count: bookcase.books.count)
+            = t('.book_count', count: bookcase.books.count)

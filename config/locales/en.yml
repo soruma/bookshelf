@@ -2,8 +2,8 @@ en:
   activerecord:
     models:
       book:
-        one: "1 book"
-        other: "%{count} books"
+        one: "Book"
+        other: "Books"
 
   book:
     required_either_isbn_or_asin: "Please enter either ISBN or ASIN"
@@ -12,6 +12,9 @@ en:
     bookcases:
       index:
         new_bookcase: "New bookcase"
+        book_count:
+          one: "1 book"
+          other: "%{count} books"
       new:
         title: "New bookcase"
         back_to_bookcases: "< Back to bookcases"
