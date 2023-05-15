@@ -9,7 +9,7 @@ export default class extends Controller {
   }
 
   closeMenu() {
-    enter(this.menuTarget)
+    leave(this.menuTarget)
   }
 
   toggleMenu() {
