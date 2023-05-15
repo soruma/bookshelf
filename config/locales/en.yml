@@ -4,10 +4,28 @@ en:
       book:
         one: "Book"
         other: "Books"
+      bookcase:
+        one: "Bookcase"
+        other: "Bookcases"
+      user:
+        one: "User"
+        other: "Users"
+
+    attributes:
+      book:
+        title: "Title"
+        authors: "Authors"
+        description: "Description"
+        page: "Page"
+        isbn: "ISBN"
+        asin: "ASIN"
 
   book:
     required_either_isbn_or_asin: "Please enter either ISBN or ASIN"
 
+  dashboard:
+    show:
+      title: "Dashboard"
   users:
     bookcases:
       index:

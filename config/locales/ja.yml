@@ -3,10 +3,26 @@ ja:
     models:
       book:
         other: "本"
+      bookcase:
+        other: "本棚"
+      user:
+        other: "ユーザー"
+
+    attributes:
+      book:
+        title: "タイトル"
+        authors: "著者"
+        description: "説明"
+        page: "ページ"
+        isbn: "ISBN"
+        asin: "ASIN"
 
   book:
     required_either_isbn_or_asin: "ISBNまたはASINのどちらか一方を入力してください"
 
+  dashboard:
+    show:
+      title: "Dashboard"
   users:
     bookcases:
       index:

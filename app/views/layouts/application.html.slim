@@ -23,10 +23,10 @@ body.h-full
 
             .hidden.md:block
               .ml-10.flex.items-baseline.space-x-4
-                = link_to 'Dashboard', root_path, class: menu_item_class('Dashboard', yield(:title))
+                = link_to t('dashboard.show.title'), root_path, class: menu_item_class(t('dashboard.show.title'), yield(:title))
                 - if @is_signed_in
-                  = link_to 'Bookcases', user_bookcases_path(@current_user.name), class: menu_item_class('Bookcases', yield(:title))
-                = link_to 'Books', books_path, class: menu_item_class('Books', yield(:title))
+                  = link_to Bookcase.model_name.human(count: 2), user_bookcases_path(@current_user.name), class: menu_item_class(Bookcase.model_name.human(count: 2), yield(:title))
+                = link_to Book.model_name.human(count: 2), books_path, class: menu_item_class(Book.model_name.human(count: 2), yield(:title))
 
           .hidden.md:block
             .ml-4.flex.items-center.md:ml-6.space-x-2[
