@@ -108,3 +108,6 @@ gem 'rails_admin'
 # Auth
 gem 'excon'
 gem 'json-jwt'
+
+# Cognito
+gem 'omniauth-cognito-idp'

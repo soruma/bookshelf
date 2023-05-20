@@ -19,6 +19,7 @@ services:
       - AWS_COGNITO_DOMAIN=${AWS_COGNITO_DOMAIN}
       - AWS_COGNITO_POOL_ID=${AWS_COGNITO_POOL_ID}
       - AWS_COGNITO_REGION=${AWS_COGNITO_REGION}
+      - AWS_COGNITO_POOL_SITE=https://soruma-bookshelf.auth.us-east-1.amazoncognito.com/
     ports:
       - 3000:3000
     stdin_open: true

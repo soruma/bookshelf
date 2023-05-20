@@ -25,7 +25,12 @@ export class UserPoolStack extends cdk.NestedStack {
       this,
       "ClientCallbackUrls",
       {
-        type: "String",
+        type: "CommaDelimitedList",
+        default: [
+          "http://localhost:3000/auth/signin",
+          "http://localhost:3000/auth/signup",
+          "http://localhost:3000/auth/cognito-idp/callback",
+        ].toString(),
       }
     );
     const clientCallbackUrls = cdk.Fn.split(
@@ -37,7 +42,8 @@ export class UserPoolStack extends cdk.NestedStack {
       this,
       "ClientLogoutUrls",
       {
-        type: "String",
+        type: "CommaDelimitedList",
+        default: ["http://localhost:3000/"].toString(),
       }
     );
     const clientLogoutUrls = cdk.Fn.split(

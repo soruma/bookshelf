@@ -4,63 +4,17 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
 
-  before_action :check_signed_in
-
   attr_reader :current_user
 
-  def check_signed_in
-    @is_signed_in = false
-    @cognito_session = nil
+  private
 
-    cognito_session = nil
-    if session[:cognito_session_id]
-      begin
-        cognito_session = CognitoSession.find(session[:cognito_session_id])
-      rescue ActiveRecord::RecordNotFound
-      end
-    end
-
-    return unless cognito_session
-
-    now = Time.zone.now.tv_sec
-
-    if cognito_session.expire_time > now
-      # Still valid, use
-      #
-
-      Rails.logger.info("Found a non-expired cognito session: #{cognito_session.id}")
-      @is_signed_in = true
-      @current_user = cognito_session.user
-      @cognito_session = cognito_session
-      return
-    end
-
-    Rails.logger.info("Refreshing cognito session: #{cognito_session.id}")
-
-    # Need to refresh token
-    return unless refresh_cognito_session(cognito_session)
-
-    @is_signed_in = true
-    @current_user = cognito_session.user
-    @cognito_session = cognito_session
-    nil
+  def authenticate_user!
+    redirect_to(root_path) unless signed_in?
   end
 
-  def refresh_cognito_session(cognito_session)
-    client = new_cognito_client
-
-    resp = client.refresh_id_token(cognito_session.refresh_token)
-
-    return false unless resp
-
-    cognito_session.expire_time = resp.id_token[:exp]
-    cognito_session.issued_time = resp.id_token[:auth_time]
-    cognito_session.audience = resp.id_token[:aud]
-
-    cognito_session.save!
+  def signed_in?
+    session[:userinfo].present?
   end
 
-  def new_cognito_client
-    Cognito::Client.new(redirect_uri: auth_signin_url)
-  end
+  helper_method :signed_in?
 end
