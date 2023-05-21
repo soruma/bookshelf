@@ -1,1 +1,10 @@
 - provide(:title, t('Dashboard'))
+
+
+= button_to 'Login with AWS', '/auth/aws'
+
+- if session[:auth]
+  pre
+    = JSON.pretty_generate(session[:auth])
+
+  = link_to 'Logout', 'auth/aws/logout'

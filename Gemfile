@@ -108,3 +108,7 @@ gem 'rails_admin'
 # Auth
 gem 'excon'
 gem 'json-jwt'
+
+gem 'omniauth-oauth2'
+gem 'omniauth-oauth2-cognito'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'

@@ -3,12 +3,10 @@
 Rails.application.routes.draw do
   root to: 'dashboard#show'
 
-  get '/signin', to: 'session#signin'
-  get '/signout', to: 'session#signout'
-  get '/signup', to: 'session#signup'
-
-  get 'auth/signin'
-  get 'auth/signout'
+  namespace :auth do
+    get ':provider/callback' => 'omniauth#callback'
+    get ':provider/logout' => 'omniauth#logout'
+  end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
