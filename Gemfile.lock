@@ -5,13 +5,6 @@ GIT
     active_decorator (1.4.0)
       activesupport
 
-GIT
-  remote: https://github.com/varvet/pundit.git
-  revision: 9d3d197718a879fd63c15d533f55a6cdb5fa8853
-  specs:
-    pundit (2.3.0)
-      activesupport (>= 3.0.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -223,6 +216,8 @@ GEM
     public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
+    pundit (2.3.0)
+      activesupport (>= 3.0.0)
     racc (1.6.2)
     rack (2.2.7)
     rack-test (2.1.0)
@@ -412,7 +407,7 @@ DEPENDENCIES
   propshaft
   pry-rails
   puma (~> 5.0)
-  pundit!
+  pundit
   rails (~> 7.0.4, >= 7.0.4.3)
   rails-erd
   rails-i18n (~> 7.0.0)
