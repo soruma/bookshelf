@@ -71,6 +71,8 @@ group :development do
 
   # ED Diagram
   gem 'rails-erd'
+
+  gem 'overcommit'
 end
 
 group :test do

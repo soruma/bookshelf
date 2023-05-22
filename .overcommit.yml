@@ -1,0 +1,32 @@
+PreCommit:
+  BundleAudit:
+    enabled: true
+    flags: ['--update']
+    on_warn: fail
+    command: ['bundle-audit']
+
+  BundleOutdated:
+    enabled: true
+
+  RuboCop:
+    enabled: true
+    on_warn: fail
+    command: ['rubocop']
+
+  TrailingWhitespace:
+    enabled: true
+
+PostCheckout:
+  ALL:
+    quiet: true
+
+  BundleInstall:
+    enabled: true
+
+  IndexTags:
+    enabled: true
+
+PrePush:
+  Brakeman:
+    enabled: true
+    command: ['bundle', 'exec', 'brakeman']
