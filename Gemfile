@@ -15,7 +15,7 @@ gem 'propshaft'
 gem 'pg', '~> 1.1'
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 6.0'
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem 'importmap-rails'
@@ -88,8 +88,6 @@ group :development, :test do
   gem 'guard-rubocop', require: false
   gem 'pry-rails'
   gem 'rspec-rails'
-  gem 'rubocop-capybara', require: false
-  gem 'rubocop-factory_bot', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'slimcop', require: false
@@ -101,11 +99,9 @@ end
 # https://github.com/amatsuda/active_decorator/pull/117
 gem 'active_decorator', github: 'amatsuda/active_decorator'
 
+gem 'pundit'
 gem 'rails-i18n', '~> 7.0.0'
 gem 'slim-rails'
-
-# https://github.com/varvet/pundit/pull/754
-gem 'pundit', github: 'varvet/pundit'
 
 # Auth
 gem 'excon'
