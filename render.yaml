@@ -1,0 +1,29 @@
+databases:
+  - name: bookshelf
+    databaseName: bookshelf
+    region: singapore
+
+services:
+  - type: web
+    name: bookshelf
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    region: singapore
+    envVars:
+      - key: AWS_COGNITO_APP_CLIENT_ID
+        sync: false
+      - key: AWS_COGNITO_APP_CLIENT_SECRET
+        sync: false
+      - key: AWS_COGNITO_DOMAIN
+        sync: false
+      - key: AWS_COGNITO_POOL_ID
+        sync: false
+      - key: AWS_COGNITO_REGION
+        sync: false
+      - key: BOOKSHELF_DATABASE_URL
+        fromDatabase:
+          name: bookshelf
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
