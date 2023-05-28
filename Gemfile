@@ -105,6 +105,10 @@ gem 'pundit'
 gem 'rails-i18n', '~> 7.0.0'
 gem 'slim-rails'
 
+# Rails admin
+gem 'cssbundling-rails'
+gem 'rails_admin'
+
 # Auth
 gem 'excon'
 gem 'json-jwt'
