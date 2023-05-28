@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'auth/signin'
   get 'auth/signout'
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   resources :books, only: %i[index show] do
     resources :bookcases, only: [] do
       resource :book_in_bookcase, controller: 'books/bookcases/book_in_bookcase', only: %i[create destroy]

@@ -41,3 +41,5 @@
 
 # Ignore generated SimpleCov
 /coverage/*
+
+/node_modules

@@ -1,4 +1,7 @@
 FROM node:18.16-slim as node
+
+RUN npm install -g sass
+
 FROM ruby:3.2.2-slim as base
 
 RUN apt update -qq \
