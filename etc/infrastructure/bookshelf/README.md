@@ -1,4 +1,4 @@
-# BookshelfUserPoolStack
+# BookshelfStack
 
 Create Cognito instances
 

@@ -3,35 +3,26 @@ import { Construct } from "constructs";
 import * as cognito from "aws-cdk-lib/aws-cognito";
 import * as ssm from "aws-cdk-lib/aws-ssm";
 
-export class BookshelfUserPoolStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+export class UserPoolStack extends cdk.NestedStack {
+  public readonly stringParameter:ssm.StringParameter;
+
+  constructor(scope: Construct, id: string, props?: cdk.NestedStackProps) {
     super(scope, id, props);
 
     const domainPrefixParam = new cdk.CfnParameter(this, "DomainPrefix", {
       type: "String",
-      default: "bookshelf",
     });
+    const domainPrefix = domainPrefixParam.valueAsString;
 
-    const clientCallbackUrlsParam = new cdk.CfnParameter(
-      this,
-      "ClientCallbackUrls",
-      {
-        type: "CommaDelimitedList",
-        default: [
-          "http://localhost:3000/auth/signin",
-          "http://localhost:3000/auth/signup",
-        ].toString(),
-      }
-    );
+    const clientCallbackUrlsParam = new cdk.CfnParameter(this, "ClientCallbackUrls", {
+      type: "String",
+    });
+    const clientCallbackUrls = cdk.Fn.split(",", clientCallbackUrlsParam.valueAsString);
 
-    const clientLogoutUrlsParam = new cdk.CfnParameter(
-      this,
-      "ClientLogoutUrls",
-      {
-        type: "CommaDelimitedList",
-        default: ["http://localhost:3000/auth/signout"].toString(),
-      }
-    );
+    const clientLogoutUrlsParam = new cdk.CfnParameter(this, "ClientLogoutUrls", {
+      type: "String",
+    });
+    const clientLogoutUrls = cdk.Fn.split(",", clientLogoutUrlsParam.valueAsString);
 
     const userPool = new cognito.UserPool(this, "UserPool", {
       userPoolName: "BookshelfUserPool",
@@ -47,7 +38,7 @@ export class BookshelfUserPoolStack extends cdk.Stack {
       keepOriginal: { email: true }, // Verifying attribute changes
     });
     userPool.addDomain("Domain", {
-      cognitoDomain: { domainPrefix: domainPrefixParam.valueAsString },
+      cognitoDomain: { domainPrefix: domainPrefix },
     });
 
     const clientWriteAttributes =
@@ -60,6 +51,7 @@ export class BookshelfUserPoolStack extends cdk.Stack {
       emailVerified: true,
     });
 
+
     const userPoolClient = userPool.addClient("Client", {
       authFlows: {
         adminUserPassword: true,
@@ -70,8 +62,8 @@ export class BookshelfUserPoolStack extends cdk.Stack {
           authorizationCodeGrant: true,
         },
         scopes: [cognito.OAuthScope.EMAIL, cognito.OAuthScope.OPENID],
-        callbackUrls: clientCallbackUrlsParam.valueAsList,
-        logoutUrls: clientLogoutUrlsParam.valueAsList,
+        callbackUrls: clientCallbackUrls,
+        logoutUrls: clientLogoutUrls,
       },
       preventUserExistenceErrors: true,
       readAttributes: clientReadAttributes,
@@ -84,7 +76,7 @@ export class BookshelfUserPoolStack extends cdk.Stack {
       UserPoolClientSecret: userPoolClient.userPoolClientSecret.unsafeUnwrap(),
     };
 
-    const bookshelfUserPoolStringParameter = new ssm.StringParameter(
+    this.stringParameter = new ssm.StringParameter(
       this,
       "UserPoolAttributes",
       {
@@ -92,10 +84,5 @@ export class BookshelfUserPoolStack extends cdk.Stack {
         stringValue: JSON.stringify(bookshelfUserPoolAttributes),
       }
     );
-
-    new cdk.CfnOutput(this, "StringParameterArn", {
-      value: bookshelfUserPoolStringParameter.parameterArn,
-      exportName: "BookshelfUserPoolStringParameterArn",
-    });
   }
 }

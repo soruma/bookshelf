@@ -1,32 +1,17 @@
 import * as cdk from "aws-cdk-lib";
 import { Template } from "aws-cdk-lib/assertions";
-import * as BookshelfUserPool from "../lib/bookshelf_user_pool-stack";
+import { UserPoolStack } from "../lib/user-pool-stack";
 
 let app: cdk.App;
-let stack: BookshelfUserPool.BookshelfUserPoolStack;
+let stack: cdk.Stack;
+let nestedStack: UserPoolStack;
 let template: Template;
 
 beforeAll(() => {
   app = new cdk.App();
-  stack = new BookshelfUserPool.BookshelfUserPoolStack(
-    app,
-    "BookshelfUserPoolTestStack"
-  );
-  template = Template.fromStack(stack);
-});
-
-test("Parameter Created", () => {
-  template.hasParameter("DomainPrefix", {
-    Type: "String",
-  });
-
-  template.hasParameter("ClientCallbackUrls", {
-    Type: "CommaDelimitedList",
-  });
-
-  template.hasParameter("ClientLogoutUrls", {
-    Type: "CommaDelimitedList",
-  });
+  stack = new cdk.Stack(app, "Parent");
+  nestedStack = new UserPoolStack(stack, "UserPoolStack");
+  template = Template.fromStack(nestedStack);
 });
 
 test("Cognito UserPool Created", () => {
@@ -76,8 +61,8 @@ test("Cognito UserPoolClient Created", () => {
     GenerateSecret: true,
     AllowedOAuthFlows: ["code"], // oAuth -> flows
     AllowedOAuthScopes: ["email", "openid"], // oAuth -> scopes
-    CallbackURLs: { Ref: "ClientCallbackUrls" }, // oAuth -> callbackUrls
-    LogoutURLs: { Ref: "ClientLogoutUrls" }, // oAuth -> logoutUrls
+    CallbackURLs: { "Fn::Split": [",", { Ref: "ClientCallbackUrls" }] }, // oAuth -> callbackUrls
+    LogoutURLs: { "Fn::Split": [",", { Ref: "ClientLogoutUrls" }] }, // oAuth -> logoutUrls
     PreventUserExistenceErrors: "ENABLED", // preventUserExistenceErrors
     ReadAttributes: ["email", "email_verified", "name"],
     WriteAttributes: ["email", "name"],

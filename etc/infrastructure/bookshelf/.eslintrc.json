@@ -22,6 +22,7 @@
   ],
   "rules": {
     "no-console": "error",
+    "no-trailing-spaces": "error",
     "camelcase": "error",
     "semi": "error",
     "indent": ["error", 2],
