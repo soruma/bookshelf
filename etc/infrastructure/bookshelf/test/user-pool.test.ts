@@ -1,5 +1,6 @@
 import * as cdk from "aws-cdk-lib";
-import { Template } from "aws-cdk-lib/assertions";
+import * as lambda from "aws-cdk-lib/aws-lambda";
+import { Capture, Template } from "aws-cdk-lib/assertions";
 import { UserPoolStack } from "../lib/user-pool-stack";
 
 let app: cdk.App;
@@ -10,7 +11,22 @@ let template: Template;
 beforeAll(() => {
   app = new cdk.App();
   stack = new cdk.Stack(app, "Parent");
-  nestedStack = new UserPoolStack(stack, "UserPoolStack");
+  nestedStack = new UserPoolStack(stack, "UserPoolStack", {
+    parameters: {
+      DomainPrefix: "domain",
+      ClientCallbackUrls: "callbackurl1,callbackurl2",
+      ClientLogoutUrls: "logouturl1,callbackurl2",
+    },
+    validationUserNameFunction: new lambda.Function(
+      stack,
+      "ValidationUserNameFunction",
+      {
+        runtime: lambda.Runtime.RUBY_2_7,
+        code: lambda.Code.fromAsset("test/assets"),
+        handler: "app.lambda_handler",
+      }
+    ),
+  });
   template = Template.fromStack(nestedStack);
 });
 
@@ -43,6 +59,16 @@ test("Cognito UserPool Created", () => {
       ],
     },
   });
+
+  const preSignUpCapture = new Capture();
+  template.hasResourceProperties("AWS::Cognito::UserPool", {
+    LambdaConfig: {
+      PreSignUp: { Ref: preSignUpCapture },
+    },
+  });
+  expect(preSignUpCapture.asString()).toEqual(
+    expect.stringMatching(/^referencetoParentValidationUserNameFunction/)
+  );
 });
 
 test("Cognito UserPoolDomain Created", () => {

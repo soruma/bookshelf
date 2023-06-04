@@ -27,7 +27,7 @@ test("Parameter Created", () => {
 });
 
 test("Defined UserPoolStack", () => {
-  template.resourceCountIs("AWS::CloudFormation::Stack", 1);
+  template.resourceCountIs("AWS::CloudFormation::Stack", 2);
 });
 
 test("Output StringParameterArn", () => {

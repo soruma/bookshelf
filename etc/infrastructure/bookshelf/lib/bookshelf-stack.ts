@@ -1,10 +1,13 @@
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { UserPoolStack } from "./user-pool-stack";
+import { UserPoolLambdaTriggerStack } from "./user-pool-lambda-trigger-stack";
 
 export class BookshelfStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
+
+    const userPoolLambdaTriggerStack = new UserPoolLambdaTriggerStack(this, "UserPoolLambdaTriggerStack");
 
     const domainPrefixParam = new cdk.CfnParameter(this, "DomainPrefix", {
       type: "String",
@@ -40,7 +43,8 @@ export class BookshelfStack extends cdk.Stack {
         "DomainPrefix": domainPrefix,
         "ClientCallbackUrls": clientCallbackUrls,
         "ClientLogoutUrls": clientLogoutUrls,
-      }
+      },
+      validationUserNameFunction: userPoolLambdaTriggerStack.validationUserNameFunction,
     });
 
     new cdk.CfnOutput(this, "StringParameterArn", {

@@ -2,11 +2,16 @@ import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import * as cognito from "aws-cdk-lib/aws-cognito";
 import * as ssm from "aws-cdk-lib/aws-ssm";
+import * as lambda from "aws-cdk-lib/aws-lambda";
+
+export interface UserPoolStackProps extends cdk.NestedStackProps {
+  readonly validationUserNameFunction: lambda.IFunction;
+}
 
 export class UserPoolStack extends cdk.NestedStack {
   public readonly stringParameter:ssm.StringParameter;
 
-  constructor(scope: Construct, id: string, props?: cdk.NestedStackProps) {
+  constructor(scope: Construct, id: string, props: UserPoolStackProps) {
     super(scope, id, props);
 
     const domainPrefixParam = new cdk.CfnParameter(this, "DomainPrefix", {
@@ -40,6 +45,7 @@ export class UserPoolStack extends cdk.NestedStack {
     userPool.addDomain("Domain", {
       cognitoDomain: { domainPrefix: domainPrefix },
     });
+    userPool.addTrigger(cdk.aws_cognito.UserPoolOperation.PRE_SIGN_UP, props.validationUserNameFunction);
 
     const clientWriteAttributes =
       new cognito.ClientAttributes().withStandardAttributes({
@@ -50,7 +56,6 @@ export class UserPoolStack extends cdk.NestedStack {
     const clientReadAttributes = clientWriteAttributes.withStandardAttributes({
       emailVerified: true,
     });
-
 
     const userPoolClient = userPool.addClient("Client", {
       authFlows: {
