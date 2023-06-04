@@ -9,7 +9,7 @@ export interface UserPoolStackProps extends cdk.NestedStackProps {
 }
 
 export class UserPoolStack extends cdk.NestedStack {
-  public readonly stringParameter:ssm.StringParameter;
+  public readonly stringParameter: ssm.StringParameter;
 
   constructor(scope: Construct, id: string, props: UserPoolStackProps) {
     super(scope, id, props);
@@ -19,15 +19,29 @@ export class UserPoolStack extends cdk.NestedStack {
     });
     const domainPrefix = domainPrefixParam.valueAsString;
 
-    const clientCallbackUrlsParam = new cdk.CfnParameter(this, "ClientCallbackUrls", {
-      type: "String",
-    });
-    const clientCallbackUrls = cdk.Fn.split(",", clientCallbackUrlsParam.valueAsString);
+    const clientCallbackUrlsParam = new cdk.CfnParameter(
+      this,
+      "ClientCallbackUrls",
+      {
+        type: "String",
+      }
+    );
+    const clientCallbackUrls = cdk.Fn.split(
+      ",",
+      clientCallbackUrlsParam.valueAsString
+    );
 
-    const clientLogoutUrlsParam = new cdk.CfnParameter(this, "ClientLogoutUrls", {
-      type: "String",
-    });
-    const clientLogoutUrls = cdk.Fn.split(",", clientLogoutUrlsParam.valueAsString);
+    const clientLogoutUrlsParam = new cdk.CfnParameter(
+      this,
+      "ClientLogoutUrls",
+      {
+        type: "String",
+      }
+    );
+    const clientLogoutUrls = cdk.Fn.split(
+      ",",
+      clientLogoutUrlsParam.valueAsString
+    );
 
     const userPool = new cognito.UserPool(this, "UserPool", {
       userPoolName: "BookshelfUserPool",
@@ -45,7 +59,10 @@ export class UserPoolStack extends cdk.NestedStack {
     userPool.addDomain("Domain", {
       cognitoDomain: { domainPrefix: domainPrefix },
     });
-    userPool.addTrigger(cdk.aws_cognito.UserPoolOperation.PRE_SIGN_UP, props.validationUserNameFunction);
+    userPool.addTrigger(
+      cdk.aws_cognito.UserPoolOperation.PRE_SIGN_UP,
+      props.validationUserNameFunction
+    );
 
     const clientWriteAttributes =
       new cognito.ClientAttributes().withStandardAttributes({
@@ -81,13 +98,9 @@ export class UserPoolStack extends cdk.NestedStack {
       UserPoolClientSecret: userPoolClient.userPoolClientSecret.unsafeUnwrap(),
     };
 
-    this.stringParameter = new ssm.StringParameter(
-      this,
-      "UserPoolAttributes",
-      {
-        parameterName: "BookshelfUserPoolAttributes",
-        stringValue: JSON.stringify(bookshelfUserPoolAttributes),
-      }
-    );
+    this.stringParameter = new ssm.StringParameter(this, "UserPoolAttributes", {
+      parameterName: "BookshelfUserPoolAttributes",
+      stringValue: JSON.stringify(bookshelfUserPoolAttributes),
+    });
   }
 }

@@ -7,7 +7,10 @@ export class BookshelfStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const userPoolLambdaTriggerStack = new UserPoolLambdaTriggerStack(this, "UserPoolLambdaTriggerStack");
+    const userPoolLambdaTriggerStack = new UserPoolLambdaTriggerStack(
+      this,
+      "UserPoolLambdaTriggerStack"
+    );
 
     const domainPrefixParam = new cdk.CfnParameter(this, "DomainPrefix", {
       type: "String",
@@ -22,11 +25,14 @@ export class BookshelfStack extends cdk.Stack {
         type: "CommaDelimitedList",
         default: [
           "http://localhost:3000/auth/signin",
-          "http://localhost:3000/auth/signup"
+          "http://localhost:3000/auth/signup",
         ].toString(),
       }
     );
-    const clientCallbackUrls = cdk.Fn.join(",", clientCallbackUrlsParam.valueAsList);
+    const clientCallbackUrls = cdk.Fn.join(
+      ",",
+      clientCallbackUrlsParam.valueAsList
+    );
 
     const clientLogoutUrlsParam = new cdk.CfnParameter(
       this,
@@ -36,16 +42,24 @@ export class BookshelfStack extends cdk.Stack {
         default: ["http://localhost:3000/auth/signout"].toString(),
       }
     );
-    const clientLogoutUrls = cdk.Fn.join(",", clientLogoutUrlsParam.valueAsList);
+    const clientLogoutUrls = cdk.Fn.join(
+      ",",
+      clientLogoutUrlsParam.valueAsList
+    );
 
-    const bookshelfUserPoolStack = new UserPoolStack(this, "BookshelfUserPoolStack", {
-      parameters: {
-        "DomainPrefix": domainPrefix,
-        "ClientCallbackUrls": clientCallbackUrls,
-        "ClientLogoutUrls": clientLogoutUrls,
-      },
-      validationUserNameFunction: userPoolLambdaTriggerStack.validationUserNameFunction,
-    });
+    const bookshelfUserPoolStack = new UserPoolStack(
+      this,
+      "BookshelfUserPoolStack",
+      {
+        parameters: {
+          DomainPrefix: domainPrefix,
+          ClientCallbackUrls: clientCallbackUrls,
+          ClientLogoutUrls: clientLogoutUrls,
+        },
+        validationUserNameFunction:
+          userPoolLambdaTriggerStack.validationUserNameFunction,
+      }
+    );
 
     new cdk.CfnOutput(this, "StringParameterArn", {
       value: bookshelfUserPoolStack.stringParameter.parameterArn,
