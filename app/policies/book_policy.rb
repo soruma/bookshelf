@@ -14,4 +14,30 @@ class BookPolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def new?
+    create?
+  end
+
+  def create?
+    return true if login? && user.is_admin?
+  end
+
+  def edit?
+    update?
+  end
+
+  def update?
+    create?
+  end
+
+  def destroy?
+    create?
+  end
+
+  private
+
+  def login?
+    !user.nil?
+  end
 end

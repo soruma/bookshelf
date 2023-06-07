@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BookcasePolicy < ApplicationPolicy
+class AuthorPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -15,22 +15,20 @@ class BookcasePolicy < ApplicationPolicy
     true
   end
 
-  def create?
-    return true if login? && user.is_admin?
-
-    user == record.user
-  end
-
   def new?
     create?
   end
 
-  def update?
-    create?
+  def create?
+    return true if login? && user.is_admin?
   end
 
   def edit?
     update?
+  end
+
+  def update?
+    create?
   end
 
   def destroy?

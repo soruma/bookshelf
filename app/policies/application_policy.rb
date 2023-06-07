@@ -36,6 +36,18 @@ class ApplicationPolicy
     false
   end
 
+  def dashboard?
+    user.is_admin?
+  end
+
+  def export?
+    dashboard?
+  end
+
+  def show_in_app?
+    dashboard?
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user
@@ -43,7 +55,11 @@ class ApplicationPolicy
     end
 
     def resolve
-      raise NotImplementedError, "You must define #resolve in #{self.class}"
+      raise Pundit::NotAuthorizedError, 'must be logged in' unless user
+
+      return unless user.is_admin?
+
+      scope.all
     end
 
     private

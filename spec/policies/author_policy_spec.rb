@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe BookPolicy, type: :policy do
+RSpec.describe AuthorPolicy, type: :policy do
   let(:user) { create(:user, is_admin:) }
 
   shared_context 'when is admin' do

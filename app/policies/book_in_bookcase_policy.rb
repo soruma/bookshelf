@@ -10,15 +10,17 @@ class BookInBookcasePolicy < ApplicationPolicy
   end
 
   def create?
+    return true if login? && user.is_admin?
+
     user == record.bookcase.user
   end
 
   def new?
-    login? && create?
+    create?
   end
 
   def update?
-    user == record.bookcase.user
+    create?
   end
 
   def edit?
@@ -26,7 +28,7 @@ class BookInBookcasePolicy < ApplicationPolicy
   end
 
   def destroy?
-    user == record.bookcase.user
+    create?
   end
 
   private

@@ -3,19 +3,9 @@
 RailsAdmin.config do |config|
   config.asset_source = :importmap
 
-  ### Popular gems integration
-
-  ## == Devise ==
-  # config.authenticate_with do
-  #   warden.authenticate! scope: :user
-  # end
-  # config.current_user_method(&:current_user)
-
-  ## == CancanCan ==
-  # config.authorize_with :cancancan
-
-  ## == Pundit ==
-  # config.authorize_with :pundit
+  config.authorize_with :pundit
+  config.parent_controller = 'RailsAdminParentController'
+  config.current_user_method(&:current_user)
 
   ## == PaperTrail ==
   # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
