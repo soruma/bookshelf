@@ -84,6 +84,31 @@
       "id": 17,
       "book_id": 5,
       "author_id": 12
+    },
+    {
+      "id": 18,
+      "book_id": 6,
+      "author_id": 17
+    },
+    {
+      "id": 19,
+      "book_id": 7,
+      "author_id": 18
+    },
+    {
+      "id": 20,
+      "book_id": 8,
+      "author_id": 18
+    },
+    {
+      "id": 21,
+      "book_id": 9,
+      "author_id": 18
+    },
+    {
+      "id": 22,
+      "book_id": 10,
+      "author_id": 19
     }
   ]
 }
