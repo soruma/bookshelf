@@ -37,6 +37,8 @@ class ApplicationPolicy
   end
 
   def dashboard?
+    return false unless user
+
     user.is_admin?
   end
 
