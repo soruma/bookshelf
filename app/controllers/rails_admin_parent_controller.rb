@@ -8,6 +8,6 @@ class RailsAdminParentController < ApplicationController
 
     yield
   ensure
-    Bullet.enable = previous_value
+    Bullet.enable = previous_value unless Rails.env.production?
   end
 end
