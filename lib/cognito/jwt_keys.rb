@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'cognito/urls'
-
 # From: https://github.com/mheffner/rails-cognito-example
 module Cognito
   class JwtKeysProvider

@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'cognito/jwt_keys'
-require 'cognito/client'
-
 # From: https://github.com/mheffner/rails-cognito-example
 class ApplicationController < ActionController::Base
   include Pundit::Authorization

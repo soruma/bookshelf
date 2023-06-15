@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'cognito/jwt_keys'
-require 'cognito/pool_tokens'
-require 'cognito/urls'
-
 # From: https://github.com/mheffner/rails-cognito-example
 module Cognito
   class Client

@@ -35,5 +35,7 @@ module Bookshelf
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.action_dispatch.rescue_responses['Pundit::NotAuthorizedError'] = :forbidden
+
+    config.autoload_paths += %W[#{config.root}/lib]
   end
 end
