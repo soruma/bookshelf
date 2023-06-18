@@ -1,8 +1,12 @@
 name: "Test for Lambda"
 on:
   push:
+    paths:
+      - etc/infrastructure/**
   pull_request:
     branches: [ "main" ]
+    paths:
+      - etc/infrastructure/**
 jobs:
   test:
     runs-on: ubuntu-latest
