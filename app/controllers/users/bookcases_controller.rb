@@ -75,7 +75,7 @@ module Users
     end
 
     def set_bookcase
-      @bookcase = Bookcase.owned_by(@user).eager_load(book_in_bookcase: [:book], books: [:authors]).find(params[:id])
+      @bookcase = Bookcase.owned_by(@user).eager_load(book_in_bookcase: { book: :authors }).find(params[:id])
     end
 
     def bookcase_params
