@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './bad_user_name_exception'
+require_relative 'bad_user_name_exception'
 
 # evnet: {
 #  "version"=>"1", "region"=>"us-east-1",
