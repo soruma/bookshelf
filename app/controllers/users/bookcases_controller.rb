@@ -3,7 +3,7 @@
 module Users
   class BookcasesController < ApplicationController
     before_action :set_user
-    before_action :set_bookcase, only: %i[show edit update destroy]
+    before_action :set_bookcase, only: %i[edit update destroy bookcase]
 
     def index
       @bookcases = Bookcase.owned_by(@user)
@@ -12,6 +12,8 @@ module Users
     end
 
     def show
+      @bookcase = Bookcase.owned_by(@user).eager_load(book_in_bookcase: { book: :authors }).find(params[:id])
+
       authorize @bookcase
     end
 
@@ -28,28 +30,16 @@ module Users
       @bookcase = Bookcase.new(bookcase_params)
       authorize @bookcase
 
-      respond_to do |format|
-        if @bookcase.save
-          format.html do
-            redirect_to user_bookcase_url(@bookcase.user.name, @bookcase),
-                        notice: I18n.t('users.bookcases.created_success')
-          end
-          format.json { render :show, status: :created, location: @bookcase }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @bookcase.errors, status: :unprocessable_entity }
-        end
-      end
+      return if @bookcase.save
+
+      render :new, status: :unprocessable_entity
     end
 
     def update
       authorize @bookcase
       respond_to do |format|
         if @bookcase.update(bookcase_params)
-          format.html do
-            redirect_to user_bookcase_url(@bookcase.user.name, @bookcase),
-                        notice: I18n.t('users.bookcases.updated_success')
-          end
+          format.turbo_stream
           format.json { render :show, status: :ok, location: @bookcase }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -68,6 +58,10 @@ module Users
       end
     end
 
+    def bookcase
+      @bookcase = Bookcase.owned_by(@user).find(params[:id])
+    end
+
     private
 
     def set_user
@@ -75,7 +69,7 @@ module Users
     end
 
     def set_bookcase
-      @bookcase = Bookcase.owned_by(@user).eager_load(book_in_bookcase: { book: :authors }).find(params[:id])
+      @bookcase = Bookcase.owned_by(@user).find(params[:id])
     end
 
     def bookcase_params

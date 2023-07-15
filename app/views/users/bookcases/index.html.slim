@@ -3,7 +3,8 @@
 = content_for(:action_buttons) do
   - if policy(@new_bookcase).new?
     = link_to t('.new_bookcase'), new_user_bookcase_path,
-        class: 'bg-green-600 hover:bg-green-700 text-white rounded-md p-3 mx-1 px-4'
+        class: 'bg-green-600 hover:bg-green-700 text-white rounded-md p-3 mx-1 px-4',
+        data: { turbo_frame: 'modal' }
 
 ul#bookcases.grid.grid-cols-1.gap-6.sm:grid-cols-2.lg:grid-cols-3
   - @bookcases.each do |bookcase|

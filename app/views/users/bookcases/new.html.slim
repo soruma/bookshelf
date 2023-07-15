@@ -1,15 +1,2 @@
-- provide(:title, t('Bookcases'))
-
-.rounded-lg.bg-white.shadow
-  .px-4.py-5.sm:p-6
-    = link_to t('.back_to_bookcases'), user_bookcases_path(@user.name), class: 'text-blue-600'
-
-    h2.text-lg.font-semibold.leading-10.text-gray-900
-      = t('.title')
-
-    = form_with(model: @bookcase, url: user_bookcases_path) do |form|
-      == render 'form_items', form:, bookcase: @bookcase
-
-      .mt-6.flex.items-center.justify-end.gap-x-4
-        = form.hidden_field :user_id, value: @user.id
-        = form.submit class: 'bg-green-600 hover:bg-green-700 text-white rounded-md p-2 mx-1 px-4'
+= render 'modal' do
+  = render 'form', bookcase: @bookcase

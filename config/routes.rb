@@ -20,6 +20,10 @@ Rails.application.routes.draw do
 
   resources :users, param: :name, only: [:show], path: '/' do
     resources :bookcases, controller: 'users/bookcases' do
+      member do
+        get 'bookcase'
+      end
+
       resources :book_in_bookcases, controller: 'users/bookcases/book_in_bookcases', only: %i[show destroy]
     end
   end

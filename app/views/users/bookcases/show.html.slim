@@ -5,13 +5,14 @@
     = link_to t('.back_to_bookcases'), user_bookcases_path(@bookcase.user.name), class: 'text-blue-600'
 
     h2.text-lg.font-semibold.leading-10.text-gray-900
-      = @bookcase.name
+      = turbo_frame_tag :bookcase, src: bookcase_user_bookcase_path(@bookcase.user.name, @bookcase)
 
     .mt-6.flex.items-center.justify-end.gap-x-4
       - if policy(@bookcase).edit?
         = link_to t('.edit_this_bookcase'),
             edit_user_bookcase_path(@bookcase.user.name, @bookcase),
-            class: 'bg-green-600 hover:bg-green-700 text-white rounded-md p-2 mx-1 px-4'
+            class: 'bg-green-600 hover:bg-green-700 text-white rounded-md p-2 mx-1 px-4',
+            data: { turbo_frame: 'modal' }
 
       - if policy(@bookcase).destroy?
         = button_to t('.destroy_this_bookcase'),

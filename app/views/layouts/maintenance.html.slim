@@ -21,13 +21,6 @@ body.h-full
             .flex-shrink-0
               img.h-8.w-8[src="/site-image.png" alt="Your Company"]
 
-            .hidden.md:block
-              .ml-10.flex.items-baseline.space-x-4
-                = link_to t('dashboard.show.title'), root_path, class: menu_item_class(t('dashboard.show.title'), yield(:title))
-                - if @is_signed_in
-                  = link_to Bookcase.model_name.human(count: 2), user_bookcases_path(@current_user.name), class: menu_item_class(Bookcase.model_name.human(count: 2), yield(:title))
-                = link_to Book.model_name.human(count: 2), books_path, class: menu_item_class(Book.model_name.human(count: 2), yield(:title))
-
           .hidden.md:block
             .ml-4.flex.items-center.md:ml-6.space-x-2[
               data-controller="dropdown-menu"
@@ -86,5 +79,3 @@ body.h-full
 
   #flashes.fixed.top-0.end-0.m-3
     = render partial: 'layouts/toast'
-
-  = turbo_frame_tag 'modal'
