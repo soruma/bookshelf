@@ -6,19 +6,28 @@
 
 ```
 docker compose build
-docker compose run app bin/setup
+docker compose run --rm app bin/setup
 ```
 
 ### Insert seed
 
 ```
-docker compose run app bin/rails db:seed
+docker compose run --rm app bin/rails db:seed
 ```
 
 ### Startup
 
 ```
 docker compose up
+```
+
+### Before pull request
+
+This project uses the overcommit gem. Run this command before committing. To pull request code with no warnings, execute this step.
+
+```
+bundle install
+overcommit --install
 ```
 
 ## Layout
