@@ -5,9 +5,7 @@
     = link_to t('.back_to_bookcases'), user_bookcases_path(@bookcase.user.name), class: 'text-blue-600'
 
     h2.text-lg.font-semibold.leading-10.text-gray-900
-      = t('.title')
-
-    == render @bookcase
+      = @bookcase.name
 
     .mt-6.flex.items-center.justify-end.gap-x-4
       - if policy(@bookcase).edit?
