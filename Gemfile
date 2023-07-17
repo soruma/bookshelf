@@ -98,9 +98,7 @@ group :development, :test do
   gem 'colorize'
 end
 
-# https://github.com/amatsuda/active_decorator/pull/117
-gem 'active_decorator', github: 'amatsuda/active_decorator'
-
+gem 'active_decorator'
 gem 'pundit'
 gem 'rails-i18n', '~> 7.0.0'
 gem 'slim-rails'
