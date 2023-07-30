@@ -7,6 +7,8 @@ export class BookshelfStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    cdk.Tags.of(this).add("Service", "Bookshelf");
+
     const userPoolLambdaTriggerStack = new UserPoolLambdaTriggerStack(
       this,
       "UserPoolLambdaTriggerStack"

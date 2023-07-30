@@ -12,6 +12,12 @@ beforeAll(() => {
   template = Template.fromStack(stack);
 });
 
+test("Service tag exists in Stack", () => {
+  template.hasResourceProperties("AWS::CloudFormation::Stack", {
+    Tags: [{ Key: "Service", Value: "Bookshelf" }],
+  });
+});
+
 test("Parameter Created", () => {
   template.hasParameter("DomainPrefix", {
     Type: "String",

@@ -14,6 +14,8 @@ export class UserPoolStack extends cdk.NestedStack {
   constructor(scope: Construct, id: string, props: UserPoolStackProps) {
     super(scope, id, props);
 
+    cdk.Tags.of(this).add("Service", "Bookshelf");
+
     const domainPrefixParam = new cdk.CfnParameter(this, "DomainPrefix", {
       type: "String",
     });

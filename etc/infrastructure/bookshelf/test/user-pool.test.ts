@@ -61,14 +61,19 @@ test("Cognito UserPool Created", () => {
   });
 
   const preSignUpCapture = new Capture();
+  const userPoolTagsCapture = new Capture();
   template.hasResourceProperties("AWS::Cognito::UserPool", {
     LambdaConfig: {
       PreSignUp: { Ref: preSignUpCapture },
     },
+    UserPoolTags: userPoolTagsCapture,
   });
   expect(preSignUpCapture.asString()).toEqual(
     expect.stringMatching(/^referencetoParentValidationUserNameFunction/)
   );
+  expect(userPoolTagsCapture.asObject()).toEqual({
+    Service: "Bookshelf",
+  });
 });
 
 test("Cognito UserPoolDomain Created", () => {

@@ -8,6 +8,8 @@ export class UserPoolLambdaTriggerStack extends cdk.NestedStack {
   constructor(scope: Construct, id: string, props?: cdk.NestedStackProps) {
     super(scope, id, props);
 
+    cdk.Tags.of(this).add("Service", "Bookshelf");
+
     this.validationUserNameFunction = new lambda.DockerImageFunction(
       this,
       "ValidationUserName",

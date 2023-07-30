@@ -20,12 +20,14 @@ beforeAll(() => {
 test("Lambda function for ValidationUserNameFunction Created", () => {
   const imageUriCapture = new Capture();
   const environmentCapture = new Capture();
+  const tagsCapture = new Capture();
   template.hasResourceProperties("AWS::Lambda::Function", {
     Architectures: ["arm64"],
     Code: {
       ImageUri: imageUriCapture,
     },
     Environment: environmentCapture,
+    Tags: tagsCapture,
   });
 
   expect(imageUriCapture.asObject()).toEqual({
@@ -35,5 +37,9 @@ test("Lambda function for ValidationUserNameFunction Created", () => {
     Variables: {
       BAD_USER_NAMES: expect.stringContaining("admin"),
     },
+  });
+  expect(tagsCapture.asArray()).toContainEqual({
+    Key: "Service",
+    Value: "Bookshelf",
   });
 });
