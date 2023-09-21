@@ -18,20 +18,21 @@ beforeAll(() => {
 });
 
 test("Lambda function for ValidationUserNameFunction Created", () => {
-  const imageUriCapture = new Capture();
+  const codeCapture = new Capture();
   const environmentCapture = new Capture();
   const tagsCapture = new Capture();
   template.hasResourceProperties("AWS::Lambda::Function", {
-    Architectures: ["arm64"],
-    Code: {
-      ImageUri: imageUriCapture,
-    },
+    Code: codeCapture,
     Environment: environmentCapture,
+    Handler: "app.lambda_handler",
     Tags: tagsCapture,
   });
 
-  expect(imageUriCapture.asObject()).toEqual({
-    "Fn::Sub": expect.stringContaining("ecr"),
+  expect(codeCapture.asObject()).toEqual({
+    S3Bucket: {
+      "Fn::Sub": expect.stringContaining("assets"),
+    },
+    S3Key: expect.stringContaining(".zip"),
   });
   expect(environmentCapture.asObject()).toEqual({
     Variables: {

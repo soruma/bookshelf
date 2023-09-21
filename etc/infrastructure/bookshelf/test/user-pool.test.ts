@@ -21,7 +21,8 @@ beforeAll(() => {
       stack,
       "ValidationUserNameFunction",
       {
-        runtime: lambda.Runtime.RUBY_2_7,
+        runtime: lambda.Runtime.RUBY_3_2,
+        architecture: lambda.Architecture.ARM_64,
         code: lambda.Code.fromAsset("test/assets"),
         handler: "app.lambda_handler",
       }
