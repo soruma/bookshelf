@@ -9,7 +9,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "lint": "prettier --write 'bin/**/*.ts' 'test/**/*.ts' && eslint --fix --ext .ts bin lib test",
+    "lint": "prettier --write 'bin/**/*.ts' 'lib/**/*.ts' 'test/**/*.ts' && eslint --fix --ext .ts bin lib test",
     "ci-lint": "prettier --check 'bin/**/*.ts' 'lib/**/*.ts' 'test/**/*.ts' && eslint --ext .ts bin lib test"
   },
   "devDependencies": {
