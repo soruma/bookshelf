@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[show]
 
   def index
-    @books = Book.all.eager_load(:authors)
+    @books = Book.eager_load(:authors)
     authorize Book
   end
 

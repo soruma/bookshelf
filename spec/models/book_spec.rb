@@ -27,7 +27,7 @@ RSpec.describe Book do
       include_context 'when asin is nil'
 
       it 'is invalid' do
-        expect(book).to be_invalid
+        expect(book).not_to be_valid
       end
 
       it 'is contains the error message' do
@@ -59,7 +59,7 @@ RSpec.describe Book do
       include_context 'when asin is not nil'
 
       it 'is invalid' do
-        expect(book).to be_invalid
+        expect(book).not_to be_valid
       end
 
       it 'is contains the error message' do

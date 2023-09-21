@@ -20,7 +20,7 @@ class BookPolicy < ApplicationPolicy
   end
 
   def create?
-    return true if login? && user.is_admin?
+    true if login? && user.is_admin?
   end
 
   def edit?
