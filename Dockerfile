@@ -1,4 +1,4 @@
-FROM node:18.16-slim as node
+FROM node:22.16-slim as node
 
 RUN npm install -g sass
 
