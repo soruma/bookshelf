@@ -1,12 +1,12 @@
-FROM node:22.16-slim as node
+FROM node:22.16-slim AS node
 
 RUN npm install -g sass
 
-FROM ruby:3.2.2-slim as base
+FROM ruby:3.4.4-slim AS base
 
 RUN apt update -qq \
  && apt install -y graphviz vim \
- && apt install -y build-essential git libpq-dev \
+ && apt install -y build-essential git libpq-dev libyaml-dev \
  && apt clean \
  && rm -rf /var/lib/apt/lists/*
 
